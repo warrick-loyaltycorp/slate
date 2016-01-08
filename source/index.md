@@ -62,7 +62,8 @@ All API requests must be made over HTTPS. Calls made over plain HTTP will fail. 
 
 ## Create an API Key
 
-```ruby
+```curl
+curl -X POST /apikeys
 ```
 
 ```python
@@ -88,7 +89,8 @@ Create a new API Key.
 
 ## Get API Key details
 
-```ruby
+```curl
+curl -X GET /apikeys/<APIKey>
 ```
 
 ```python
@@ -110,6 +112,93 @@ Create a new API Key.
 Retrieve all details for a specific API key.
 
 <aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+
+### HTTP Request
+
+`GET /apikeys/<APIKey>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The API key to retrieve details for
+
+# Customers 
+
+## Create a Customer
+
+```curl
+curl -X POST -d '{"name":"Alexanne Russel","email":"kRuecker@Wintheiser.info","address":"40568 Feil Ferry\nGildafort, MO 50309","credit_cards":[{"number":"6011400661639209","expiry_date":"03\/21","cvv":211}],"bank_accounts":[{"name":"Mckenna Lubowitz","number":653315,"branch":535827}]}' /customers
+```
+
+```python
+```
+
+```shell
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Customer created",
+    "customer":
+    {
+        "name":"Alexanne Russel",
+        "email":"kRuecker@Wintheiser.info",
+        "address":"40568 Feil Ferry\nGildafort, MO 50309",
+        "credit_cards":
+        [{
+            "token":"4293284160636483"
+        }],
+        "bank_accounts":
+        [{
+            "name":"Mckenna Lubowitz",
+            "number":653315,
+            "branch":535827
+        }],
+        "id":"b4e21d75-4d1c-423e-92f1-9b61bdb0ef8a",
+        "internal_id":"a34d6e287751a916b921f769"
+    }
+}
+```
+
+Create a new customer.
+
+### HTTP Request
+
+`POST /customers`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The API key to retrieve details for
+
+## Get a Customer
+
+```ruby
+```
+
+```python
+```
+
+```curl
+curl -X POST -d '' /customers
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "api_key":"pk_test_zgo5VQTGem75o0PDcphyqtSx",
+    "permissions":"+",
+    "status":"1"
+}
+```
+
+Retrieve all details for a specific API key.
 
 ### HTTP Request
 

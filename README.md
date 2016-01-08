@@ -10,3 +10,4 @@ Build Steps
 
 * Replace source/images/logo.png to set a new logo
 
+* rake build
