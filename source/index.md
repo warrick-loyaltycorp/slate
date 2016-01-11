@@ -2,7 +2,7 @@
 title: EoneoPay API Reference
 
 language_tabs:
-  - curl
+  - shell: cURL
   - PHP
   - Java
   - Ruby
@@ -29,13 +29,7 @@ To make the API as explorable as possible, accounts have test mode and live mode
 
 > To authorize, use this code:
 
-```Ruby
-```
-
-```Python
-```
-
-```curl
+```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
   -u your_api_key:
@@ -45,6 +39,12 @@ curl "api_endpoint_here"
 ```
 
 ```Java
+```
+
+```Ruby
+```
+
+```Python
 ```
 
 ```Node
@@ -58,14 +58,23 @@ All API requests must be made over HTTPS. Calls made over plain HTTP will fail. 
 
 ## Create an API Key
 
-```curl
+```shell
 curl -X POST /apikeys
 ```
 
-```python
+```PHP
 ```
 
-```shell
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -87,14 +96,23 @@ Create a new API Key.
 
 ## Get API Key details
 
-```curl
+```shell
 curl -X GET /apikeys/<APIKey>
 ```
 
-```python
+```PHP
 ```
 
-```shell
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -123,14 +141,23 @@ ID | The API key to  revoke
 
 ## Revoke an API Key
 
-```curl
+```shell
 curl -X DELETE /apikeys/<APIKey>
 ```
 
-```python
+```PHP
 ```
 
-```shell
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -160,14 +187,23 @@ ID | The API key to retrieve details for
 
 ## Create a Customer
 
-```curl
-curl -X POST -d '{"name":"Alexanne Russel","email":"kRuecker@Wintheiser.info","address":"40568 Feil Ferry\nGildafort, MO 50309","credit_cards":[{"number":"6011400661639209","expiry_date":"03\/21","cvv":211}],"bank_accounts":[{"name":"Mckenna Lubowitz","number":653315,"branch":535827}]}' /customers
-```
-
-```python
-```
-
 ```shell
+curl -X POST -d '{"name":"Gianni Orn MD","email":"Halie.Stroman@gmail.com","address":"7901 Gavin Extensions\nDurganside, NM 42294","credit_cards":[{"token":"1533969065430","creditCardInfo":{"pan":"453298XXXX693","expiryDate":"01\/20","cardType":"6","cardDescription":"Visa"}}],"bank_accounts":[{"name":"Alvena Von DDS","number":909844,"branch":634292}]}' /customers
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -178,26 +214,38 @@ curl -X POST -d '{"name":"Alexanne Russel","email":"kRuecker@Wintheiser.info","a
     "message":"Customer created",
     "customer":
     {
-        "name":"Alexanne Russel",
-        "email":"kRuecker@Wintheiser.info",
-        "address":"40568 Feil Ferry\nGildafort, MO 50309",
+        "name":"Gianni Orn MD",
+        "email":"Halie.Stroman@gmail.com",
+        "address":"7901 Gavin Extensions\nDurganside, NM 42294",
         "credit_cards":
-        [{
-            "token":"4293284160636483"
-        }],
+        [
+            {
+                "token":"1533969065430",
+                "creditCardInfo":
+                {
+                    "pan":"453298XXXX693",
+                    "expiryDate":"01\/20",
+                    "cardType":"6",
+                    "cardDescription":"Visa"
+                }
+            }
+        ],
         "bank_accounts":
-        [{
-            "name":"Mckenna Lubowitz",
-            "number":653315,
-            "branch":535827
-        }],
-        "id":"b4e21d75-4d1c-423e-92f1-9b61bdb0ef8a",
-        "internal_id":"a34d6e287751a916b921f769"
+        [
+            {
+                "name":"Alvena Von DDS",
+                "number":909844,
+                "branch":634292
+            }
+        ],
+        "id":"cus_P3thMWG1tRvdfING"
     }
 }
 ```
 
 Create a new customer.
+
+The new customer record, including the unique ID,  is returned in the response.
 
 ### HTTP Request
 
@@ -205,14 +253,23 @@ Create a new customer.
 
 ## Update a Customer
 
-```curl
-curl -X PUT -d '{"name":"Alexanne Russel","email":"kRuecker@Wintheiser.info","address":"40568 Feil Ferry\nGildafort, MO 50309","credit_cards":[{"number":"6011400661639209","expiry_date":"03\/21","cvv":211}],"bank_accounts":[{"name":"Mckenna Lubowitz","number":653315,"branch":535827}]}' /customers/<customer ID>
-```
-
-```python
-```
-
 ```shell
+curl -X PUT -d '{"name":"Gianni Orn MD","email":"Shayna.Yundt@gmail.com","address":"7901 Gavin Extensions\nDurganside, NM 42294","credit_cards":[{"token":"1533969065430","creditCardInfo":{"pan":"453298XXXX693","expiryDate":"01\/20","cardType":"6","cardDescription":"Visa"}}],"bank_accounts":[{"name":"Alvena Von DDS","number":909844,"branch":634292}]}' /customers/cus_P3thMWG1tRvdfING
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -223,21 +280,31 @@ curl -X PUT -d '{"name":"Alexanne Russel","email":"kRuecker@Wintheiser.info","ad
     "message":"Customer updated",
     "customer":
     {
-        "name":"Alexanne Russel",
-        "email":"kRuecker@Wintheiser.info",
-        "address":"40568 Feil Ferry\nGildafort, MO 50309",
+        "name":"Gianni Orn MD",
+        "email":"Shayna.Yundt@gmail.com",
+        "address":"7901 Gavin Extensions\nDurganside, NM 42294",
         "credit_cards":
-        [{
-            "token":"4293284160636483"
-        }],
+        [
+            {
+                "token":"1533969065430",
+                "creditCardInfo":
+                {
+                    "pan":"453298XXXX693",
+                    "expiryDate":"01\/20",
+                    "cardType":"6",
+                    "cardDescription":"Visa"
+                }
+            }
+        ],
         "bank_accounts":
-        [{
-            "name":"Mckenna Lubowitz",
-            "number":653315,
-            "branch":535827
-        }],
-        "id":"b4e21d75-4d1c-423e-92f1-9b61bdb0ef8a",
-        "internal_id":"a34d6e287751a916b921f769"
+        [
+            {
+                "name":"Alvena Von DDS",
+                "number":909844,
+                "branch":634292
+            }
+        ],
+        "id":"cus_P3thMWG1tRvdfING"
     }
 }
 ```
@@ -256,14 +323,23 @@ customer ID | The ID of the customer to retrieve
 
 ## Delete a Customer
 
-```curl
-curl -X DELETE -d /customers/<customer ID>
-```
-
-```python
-```
-
 ```shell
+curl -X DELETE /customers/cus_P3thMWG1tRvdfING
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -271,7 +347,7 @@ curl -X DELETE -d /customers/<customer ID>
 ```json
 {
     "code":0,
-    "message":"Customer deleted",
+    "message":"Customer deleted"
 }
 ```
 
@@ -289,33 +365,54 @@ customer ID | The ID of the customer to retrieve
 
 ## Get a Customer
 
-```ruby
+```shell
+curl -X GET /customers/cus_P3thMWG1tRvdfING
 ```
 
-```python
+```PHP
 ```
 
-```curl
-curl -X GET /customers/<customer ID>
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "name":"Bernhard Zemlak",
-    "email":"sDietrich@yahoo.com",
-    "address":"000 Little Shore\nBuckridgeside, AR 78146",
-    "credit_cards":[{
-        "token":"3799936454001853"
-    }],
-    "bank_accounts":[{
-        "name":"David Bartell",
-        "number":830480,
-        "branch":954278
-    }],
-    "id":"ae80b1e8-3d6b-4787-bbdc-e65ebdcd6c0c",
-    "internal_id":"e62dbebb26aa589ecb70c9b7"
+    "name":"Gianni Orn MD",
+    "email":"Halie.Stroman@gmail.com",
+    "address":"7901 Gavin Extensions\nDurganside, NM 42294",
+    "credit_cards":
+    [
+        {
+            "token":"1533969065430",
+            "creditCardInfo":
+            {
+                "pan":"453298XXXX693",
+                "expiryDate":"01\/20",
+                "cardType":"6",
+                "cardDescription":"Visa"
+            }
+        }
+    ],
+    "bank_accounts":
+    [
+        {
+            "name":"Alvena Von DDS",
+            "number":909844,
+            "branch":634292
+        }
+    ],
+    "id":"cus_P3thMWG1tRvdfING"
 }
 ```
 
@@ -333,14 +430,23 @@ customer ID | The ID of the customer to retrieve
 
 ## Get a list of all Customers
 
-```ruby
-```
-
-```python
-```
-
-```curl
+```shell
 curl -X GET /customers
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
@@ -348,47 +454,59 @@ curl -X GET /customers
 ```json
 [
     {
-        "name":"Johnathan Jerde",
-        "email":"Gail.Marks@yahoo.com",
-        "address":"31369 Treutel Lakes Suite 665\\nWest Bart, HI 51602-9805",
+        "name":"Ms. Kayli Donnelly",
+        "email":"Brenda.Leuschke@yahoo.com",
+        "address":"561 Marcelo Field\nWest Guadalupe, UT 44365-1757",
         "credit_cards":
         [
             {
-                "token":"4201345141310"
+                "token":"8554872018151104",
+                "creditCardInfo":
+                {
+                    "pan":"492933XXXXXXX138",
+                    "expiryDate":"06\/16",
+                    "cardType":"6",
+                    "cardDescription":"Visa"
+                }
             }
         ],
         "bank_accounts":
         [
             {
-                "name":"Mrs. Jude Cronin",
-                "number":449277,
-                "branch":495371
+                "name":"Prof. Wilmer Champlin MD",
+                "number":119490,
+                "branch":987275
             }
         ],
-        "id":"789ec273-980d-4521-894e-b4cf45974848",
-        "internal_id":"67ee491db9e6fdd41b811eb9"
+        "id":"cus_89d0d316f6786debcc30adabbe675b05"
     },
     {
-        "name":"Gerry Mills",
-        "email":"Shyann05@hotmail.com",
-        "address":"8939 Aron Groves\\nWest Keshaunfurt, MD 50056",
+        "name":"Gianni Orn MD",
+        "email":"Halie.Stroman@gmail.com",
+        "address":"7901 Gavin Extensions\nDurganside, NM 42294",
         "credit_cards":
         [
             {
-                "token":"6642508956106936"
+                "token":"1533969065430",
+                "creditCardInfo":
+                {
+                    "pan":"453298XXXX693",
+                    "expiryDate":"01\/20",
+                    "cardType":"6",
+                    "cardDescription":"Visa"
+                }
             }
         ],
         "bank_accounts":
         [
             {
-                "name":"Liliane Greenholt",
-                "number":784569,
-                "branch":832919
+                "name":"Alvena Von DDS",
+                "number":909844,
+                "branch":634292
             }
         ],
-        "id":"5cc27a57-e911-425d-8fd9-8dd94e74b043",
-        "internal_id":"73b076c5db5bbfe3d2eaaa02"
-    },
+        "id":"cus_P3thMWG1tRvdfING"
+    }
 ]
 ```
 
@@ -402,14 +520,23 @@ Get a list of all customers.
 
 ## Create a Payment
 
-```curl
+```shell
 curl -X POST -d '{"token":"5083312354487131","reference":"Voluptas in quo dolor commodi repellendus.","amount":946900,"currency":"AUD"}' /payments
 ```
 
-```python
+```PHP
 ```
 
-```shell
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
 ```
 
 > The above command returns JSON structured like this:
