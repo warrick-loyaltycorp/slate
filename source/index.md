@@ -31,7 +31,7 @@ To make the API as explorable as possible, accounts have test mode and live mode
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
+curl "api_endpoint_here" \
   -u your_api_key:
 ```
 
@@ -59,7 +59,9 @@ All API requests must be made over HTTPS. Calls made over plain HTTP will fail. 
 ## Create an API Key
 
 ```shell
-curl -X POST /apikeys
+curl /apikeys \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X POST
 ```
 
 ```PHP
@@ -97,7 +99,10 @@ Create a new API Key.
 ## Get API Key details
 
 ```shell
-curl -X GET /apikeys/<APIKey>
+curl /apikeys/sk_test_Km2opmRbESoA32r36BlE24xm \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET
+
 ```
 
 ```PHP
@@ -119,7 +124,7 @@ curl -X GET /apikeys/<APIKey>
 
 ```json
 {
-    "api_key":"pk_test_zgo5VQTGem75o0PDcphyqtSx",
+    "api_key":"sk_test_Km2opmRbESoA32r36BlE24xm",
     "permissions":"+",
     "status":"1"
 }
@@ -142,7 +147,9 @@ ID | The API key to  revoke
 ## Revoke an API Key
 
 ```shell
-curl -X DELETE /apikeys/<APIKey>
+curl /apikeys/sk_test_Km2opmRbESoA32r36BlE24xm
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X DELETE 
 ```
 
 ```PHP
@@ -175,7 +182,7 @@ Revoke an API Key. Once revoked an API key can no longer be used to make API cal
 
 ### HTTP Request
 
-`GET /apikeys/<APIKey>`
+`DELETE /apikeys/<APIKey>`
 
 ### URL Parameters
 
@@ -188,7 +195,10 @@ ID | The API key to retrieve details for
 ## Create a Customer
 
 ```shell
-curl -X POST -d '{"name":"Gianni Orn MD","email":"Halie.Stroman@gmail.com","address":"7901 Gavin Extensions\nDurganside, NM 42294","credit_cards":[{"token":"1533969065430","creditCardInfo":{"pan":"453298XXXX693","expiryDate":"01\/20","cardType":"6","cardDescription":"Visa"}}],"bank_accounts":[{"name":"Alvena Von DDS","number":909844,"branch":634292}]}' /customers
+curl /customers \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X POST \
+    -d customer='{"name":"Skyla Bins Sr.","email":"Holly82@hotmail.com","address":"94034 Mireya Knolls Suite 124\nEast Liliana, OR 93969","credit_cards":[{"number":"5559039016093199","expiry_date":"05\/19","cvv":602}],"bank_accounts":[{"name":"Dorothea Walker","number":128818,"branch":632605}]}'
 ```
 
 ```PHP
@@ -214,38 +224,40 @@ curl -X POST -d '{"name":"Gianni Orn MD","email":"Halie.Stroman@gmail.com","addr
     "message":"Customer created",
     "customer":
     {
-        "name":"Gianni Orn MD",
-        "email":"Halie.Stroman@gmail.com",
-        "address":"7901 Gavin Extensions\nDurganside, NM 42294",
+        "name":"Skyla Bins Sr.",
+        "email":"Holly82@hotmail.com",
+        "address":"94034 Mireya Knolls Suite 124\nEast Liliana, OR 93969",
         "credit_cards":
         [
             {
-                "token":"1533969065430",
+                "token":"8846051300564567",
                 "creditCardInfo":
                 {
-                    "pan":"453298XXXX693",
-                    "expiryDate":"01\/20",
-                    "cardType":"6",
-                    "cardDescription":"Visa"
+                    "pan":"555903XXXXXXX199",
+                    "expiryDate":"05\/19",
+                    "cardType":"5",
+                    "cardDescription":"Master Card"
                 }
             }
         ],
         "bank_accounts":
         [
             {
-                "name":"Alvena Von DDS",
-                "number":909844,
-                "branch":634292
+                "name":"Dorothea Walker",
+                "number":128818,
+                "branch":632605
             }
         ],
-        "id":"cus_P3thMWG1tRvdfING"
+        "id":"cus_u4enomYPXItBeEP2"
     }
 }
 ```
 
 Create a new customer.
 
-The new customer record, including the unique ID,  is returned in the response.
+This call returns the new customer record, including:
+1. The customer unique ID. Use the unique ID to retrieve the customer
+2. A token and PAN for each credit card. The token and PAN replace the credit card number.
 
 ### HTTP Request
 
@@ -254,7 +266,10 @@ The new customer record, including the unique ID,  is returned in the response.
 ## Update a Customer
 
 ```shell
-curl -X PUT -d '{"name":"Gianni Orn MD","email":"Shayna.Yundt@gmail.com","address":"7901 Gavin Extensions\nDurganside, NM 42294","credit_cards":[{"token":"1533969065430","creditCardInfo":{"pan":"453298XXXX693","expiryDate":"01\/20","cardType":"6","cardDescription":"Visa"}}],"bank_accounts":[{"name":"Alvena Von DDS","number":909844,"branch":634292}]}' /customers/cus_P3thMWG1tRvdfING
+curl /customers/cus_P3thMWG1tRvdfING \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X PUT \
+    -d customer='{"name":"Gianni Orn MD","email":"Shayna.Yundt@gmail.com","address":"7901 Gavin Extensions\nDurganside, NM 42294","credit_cards":[{"token":"1533969065430","creditCardInfo":{"pan":"453298XXXX693","expiryDate":"01\/20","cardType":"6","cardDescription":"Visa"}}],"bank_accounts":[{"name":"Alvena Von DDS","number":909844,"branch":634292}]}' 
 ```
 
 ```PHP
@@ -324,7 +339,9 @@ customer ID | The ID of the customer to retrieve
 ## Delete a Customer
 
 ```shell
-curl -X DELETE /customers/cus_P3thMWG1tRvdfING
+curl /customers/cus_P3thMWG1tRvdfING \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X DELETE 
 ```
 
 ```PHP
@@ -366,7 +383,9 @@ customer ID | The ID of the customer to retrieve
 ## Get a Customer
 
 ```shell
-curl -X GET /customers/cus_P3thMWG1tRvdfING
+curl /customers/cus_P3thMWG1tRvdfING \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET 
 ```
 
 ```PHP
@@ -431,7 +450,9 @@ customer ID | The ID of the customer to retrieve
 ## Get a list of all Customers
 
 ```shell
-curl -X GET /customers
+curl /customers \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET 
 ```
 
 ```PHP
@@ -521,7 +542,10 @@ Get a list of all customers.
 ## Create a Payment
 
 ```shell
-curl -X POST -d '{"token":"5083312354487131","reference":"Voluptas in quo dolor commodi repellendus.","amount":946900,"currency":"AUD"}' /payments
+curl /payments \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X POST 
+    -d payment='{"token":"5083312354487131","reference":"Voluptas in quo dolor commodi repellendus.","amount":946900,"currency":"AUD"}' 
 ```
 
 ```PHP
