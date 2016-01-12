@@ -545,7 +545,7 @@ Get a list of all customers.
 curl /payments \
     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
     -X POST 
-    -d payment='{"token":"5083312354487131","reference":"Voluptas in quo dolor commodi repellendus.","amount":946900,"currency":"AUD"}' 
+    -d payment='{"token":"1479093065260287","reference":"Officia similique quaerat et eaque quo.","amount":74200,"currency":"AUD"}' 
 ```
 
 ```PHP
@@ -569,12 +569,13 @@ curl /payments \
 {
     "code":0,
     "message":"Payment created",
-    "payment":
-    {
-        "token":"5083312354487131",
-        "reference":"Voluptas in quo dolor commodi repellendus.",
-        "amount":946900,
-        "currency":"AUD"
+    "txnID":"273040",
+    "payment":{
+        "token":"1479093065260287",
+        "reference":"Officia similique quaerat et eaque quo.",
+        "amount":74200,
+        "currency":"AUD",
+        "txnID":"273040"
     }
 }
 ```
@@ -583,7 +584,63 @@ Create a new payment.
 
 The token identifies the credit card to be used for this payments. The token is returned when creating a new customer.
 
+The response to a successful payment includes the *txnID* which must be used when processing refunds.
+
 ### HTTP Request
 
 `POST /payments`
+
+## Refund a Payment
+
+```shell
+curl /payments/273040 \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X DELETE 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Payment refunded",
+    "txnID":"273042",
+    "refund":
+    {
+        "amount":74200,
+        "currency":"AUD",
+        "purchaseOrderNo":"Officia similique quaerat et eaque quo.",
+        "txnID":"273042"
+    }
+}
+```
+
+Refund a payment.
+
+The transaction ID returned by an earlier call to create a payment must be provided
+
+### HTTP Request
+
+`DELETE /payments/<txnID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+txnID | The ID of the payment transaction to refund
 
