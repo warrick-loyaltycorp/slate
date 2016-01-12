@@ -56,45 +56,11 @@ All API requests must be made over HTTPS. Calls made over plain HTTP will fail. 
 
 # API Keys 
 
-## Create an API Key
+All calls to the EoneoPay Payment Gateway are authenticated using API Keys.
 
-```shell
-curl /apikeys \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X POST
-```
+New API Keys are issued when a [merchant is created](#create-a-merchant). 
 
-```PHP
-```
-
-```Java
-```
-
-```Ruby
-```
-
-```Python
-```
-
-```Node
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "test_secret_key": "sk_test_6qzkzasVKBYirSHtTHJASrmL",
-    "test_public_key": "pk_test_zgo5VQTGem75o0PDcphyqtSx"
-}
-```
-
-Create a new API Key.
-
-<aside class="warning">An administrator API key is required to manage API keys</aside>
-
-### HTTP Request
-
-`POST /apikeys`
+API Keys are revocable. An admin key is required to retrieve and revoke API Keys.
 
 ## Get API Key details
 
@@ -189,6 +155,359 @@ Revoke an API Key. Once revoked an API key can no longer be used to make API cal
 Parameter | Description
 --------- | -----------
 ID | The API key to retrieve details for
+
+# Merchants 
+
+## Create a Merchant
+
+```shell
+curl /merchants \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X POST \
+    -d merchant='{"name":"Dr. Keyshawn Cruickshank IV","email":"Elmer25@Kuhn.biz","address":"0060 Jaylan Pine Apt. 094\nEast Lori, NV 71135","credit_cards":[{"number":"5142451063431350","expiry_date":"12\/17","cvv":856}],"bank_accounts":[{"name":"Louvenia Morar","number":212192,"branch":616398}]}'
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Merchant created",
+    "merchant":
+    {
+        "name":"Dr. Keyshawn Cruickshank IV",
+        "email":"Elmer25@Kuhn.biz",
+        "address":"0060 Jaylan Pine Apt. 094\nEast Lori, NV 71135",
+        "credit_cards":
+        [
+            {
+                "token":"4817230923470352",
+                "creditCardInfo":
+                {
+                    "pan":"514245XXXXXXX350",
+                    "expiryDate":"12\/17",
+                    "cardType":"5",
+                    "cardDescription":"Master Card"
+                }
+            }
+        ],
+        "bank_accounts":
+        [
+            {
+                "name":"Louvenia Morar",
+                "number":212192,
+                "branch":616398
+            }
+        ],
+        "id":"mer_TICtkVBH2HMhaaS5",
+        "secret_key":"sk_UHEtfvVqwiAUQeaEnqzFrMT5",
+        "public_key":"pk_4PNIUIwbMOrQvF91oVPFIQFR"
+    }
+}
+```
+
+Create a new merchant.
+
+This call returns the new merchant record, including:
+
+1. The API Keys for this merchant.
+2. The merchant unique ID. Use the unique ID to retrieve the merchant.
+3. A token and PAN for each credit card. The token and PAN replace the credit card number.
+
+### HTTP Request
+
+`POST /merchants`
+
+## Update a Merchant
+
+```shell
+curl /merchants/cus_P3thMWG1tRvdfING \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X PUT \
+    -d merchant='{"name":"Maida Schaefer","email":"sMorar@yahoo.com","address":"33543 Connelly Prairie\nDouglasbury, MA 58663","credit_cards":[{"token":"3802789002339201","creditCardInfo":{"pan":"547025XXXXXXX413","expiryDate":"08\/20","cardType":"5","cardDescription":"Master Card"}}],"bank_accounts":[{"name":"Prof. Franco Wunsch II","number":457888,"branch":465377}],"id":"mer_2zeySm9fP4WKssSX","secret_key":"sk_cOJPAMZGPmJgkjUpwX3Kspz4","public_key":"pk_ydrJTGR600yCBgM89QUy3rSY"}' 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Merchant updated",
+    "merchant":
+    {
+        "name":"Maida Schaefer",
+        "email":"sMorar@yahoo.com",
+        "address":"33543 Connelly Prairie\nDouglasbury, MA 58663",
+        "credit_cards":
+        [
+            {
+                "token":"3802789002339201",
+                "creditCardInfo":
+                {
+                    "pan":"547025XXXXXXX413",
+                    "expiryDate":"08\/20",
+                    "cardType":"5",
+                    "cardDescription":"Master Card"
+                }
+            }
+        ],
+        "bank_accounts":
+        [
+            {
+                "name":"Prof. Franco Wunsch II",
+                "number":457888,
+                "branch":465377
+            }
+        ],
+        "id":"mer_2zeySm9fP4WKssSX",
+        "secret_key":"sk_cOJPAMZGPmJgkjUpwX3Kspz4",
+        "public_key":"pk_ydrJTGR600yCBgM89QUy3rSY"
+    }
+}
+```
+
+Update a merchant with new details.
+
+### HTTP Request
+
+`PUT /merchants/<merchant ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant ID | The ID of the merchant to update
+
+## Delete a Merchant
+
+```shell
+curl /merchants/mer_2zeySm9fP4WKssSX \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X DELETE 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Merchant deleted"
+}
+```
+
+Delete a merchant record.
+
+### HTTP Request
+
+`DELETE /merchants/<merchant ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant ID | The ID of the merchant to delete
+
+## Get a Merchant
+
+```shell
+curl /merchants/mer_2zeySm9fP4WKssSX \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "name":"Maida Schaefer",
+    "email":"Geovany.Barrows@Hirthe.com",
+    "address":"33543 Connelly Prairie\nDouglasbury, MA 58663",
+    "credit_cards":
+    [
+        {
+            "token":"3802789002339201",
+            "creditCardInfo":
+            {
+                "pan":"547025XXXXXXX413",
+                "expiryDate":"08\/20",
+                "cardType":"5",
+                "cardDescription":"Master Card"
+            }
+        }
+    ],
+    "bank_accounts":
+    [
+        {
+            "name":"Prof. Franco Wunsch II",
+            "number":457888,
+            "branch":465377
+        }
+    ],
+    "id":"mer_2zeySm9fP4WKssSX"
+}
+```
+
+Retrieve details for a merchant.
+
+### HTTP Request
+
+`GET /merchants/<merchant ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant ID | The ID of the merchant to retrieve
+
+## Get a list of all Merchants
+
+```shell
+curl /merchants \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "name":"Dr. Keyshawn Cruickshank IV",
+        "email":"Elmer25@Kuhn.biz",
+        "address":"0060 Jaylan Pine Apt. 094\nEast Lori, NV 71135",
+        "credit_cards":
+        [
+            {
+                "token":"4817230923470352",
+                "creditCardInfo":
+                {
+                    "pan":"514245XXXXXXX350",
+                    "expiryDate":"12\/17",
+                    "cardType":"5",
+                    "cardDescription":"Master Card"
+                }
+            }
+        ],
+        "bank_accounts":
+        [
+            {
+                "name":"Louvenia Morar",
+                "number":212192,
+                "branch":616398
+            }
+        ],
+        "id":"mer_TICtkVBH2HMhaaS5"
+    },
+    {
+        "name":"Maida Schaefer",
+        "email":"Geovany.Barrows@Hirthe.com",
+        "address":"33543 Connelly Prairie\nDouglasbury, MA 58663",
+        "credit_cards":
+        [
+            {
+                "token":"3802789002339201",
+                "creditCardInfo":
+                {
+                    "pan":"547025XXXXXXX413",
+                    "expiryDate":"08\/20",
+                    "cardType":"5",
+                    "cardDescription":"Master Card"
+                }
+            }
+        ],
+        "bank_accounts":
+        [
+            {
+                "name":"Prof. Franco Wunsch II",
+                "number":457888,
+                "branch":465377
+            }
+        ],
+        "id":"mer_2zeySm9fP4WKssSX"
+    }
+]
+```
+
+Get a list of all merchants.
+
+### HTTP Request
+
+`GET /merchants`
 
 # Customers 
 
