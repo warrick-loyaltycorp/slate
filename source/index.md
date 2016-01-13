@@ -963,3 +963,298 @@ Parameter | Description
 --------- | -----------
 txnID | The ID of the payment transaction to refund
 
+# Fees
+
+## Set general fees
+
+```shell
+curl /fees/cc_payment \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -d fee='{"transactionFee":0.3,"cardRates":{"MasterCard":1.5,"Visa":1.5,"AMEX":2.9}}' \
+    -X PUT 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{"code":0,"message":"Fee created."}
+```
+
+Set a general fee structure for a specific payment type.
+
+Payment type can be one of:
+
+1. cc_payment - credit card payments
+2. direct_debit - direct debit payments
+3. bpay - BPAY payments
+4. auspost - AUSPost payments
+5. eft - allocated eft
+6. cheque - cheque payments
+
+### HTTP Request
+
+`PUT /fees/<payment type>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+payment type | The payment type to set a fee structure for.
+
+## Set fees for a specific merchant
+
+```shell
+curl /fees/cc_payment/mer_Jz1jhip325eRwhWy \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -d fee='{"transactionFee":0.4,"cardRates":{"MasterCard":1.8,"Visa":1.9,"AMEX":3.2}}' \
+    -X PUT 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{"code":0,"message":"Fee created."}
+```
+
+Set a fee structure for a specific payment type and merchant.
+
+The merchant fee structure overrides the general fee structure.
+
+See [Set general fees](#set-general-fees) for a list of valid payment types.
+
+### HTTP Request
+
+`PUT /fees/<payment type>/<merchant id>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+payment type | The payment type to set a fee structure for.
+merchant id | The merchant to set a fee structure for.
+
+## Get fees
+
+```shell
+curl /fees/cc_payment \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "transactionFee":0.3,
+    "cardRates":
+    {
+        "MasterCard":1.5,
+        "Visa":1.5,
+        "AMEX":2.9
+    }
+}
+```
+
+Get the fee structure for a payment type.
+
+See [Set general fees](#set-general-fees) for a list of valid payment types.
+
+### HTTP Request
+
+`GET /fees/<payment type>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+payment type | The payment type to set a fee structure for.
+
+## Get merchant fees
+
+```shell
+curl /fees/cc_payment/mer_Jz1jhip325eRwhWy \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X GET 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "transactionFee":0.3,
+    "cardRates":
+    {
+        "MasterCard":1.5,
+        "Visa":1.5,
+        "AMEX":2.9
+    }
+}
+```
+
+Get the fee structure for a payment type and merchant.
+
+See [Set general fees](#set-general-fees) for a list of valid payment types.
+
+### HTTP Request
+
+`GET /fees/<payment type>/<merchant id>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+payment type | The payment type to set a fee structure for.
+merchant id | The merchant to set a fee structure for.
+
+## Delete general fees
+
+```shell
+curl /fees/cc_payment \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X DELETE 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Fee deleted."
+}
+```
+
+Delete a general fee structure for a payment type.
+
+See [Set general fees](#set-general-fees) for a list of valid payment types.
+
+### HTTP Request
+
+`DELETE /fees/<payment type>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+payment type | The payment type to delete a fee structure for.
+
+## Delete merchant fees
+
+```shell
+curl /fees/cc_payment/mer_Jz1jhip325eRwhWy \
+    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -X DELETE 
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code":0,
+    "message":"Fee deleted."
+}
+```
+
+Delete the fee structure for a payment type and merchant.
+
+See [Set general fees](#set-general-fees) for a list of valid payment types.
+
+### HTTP Request
+
+`DELETE /fees/<payment type>/<merchant id>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+payment type | The payment type to delete a fee structure for.
+merchant id | The merchant to delete a fee structure for.
