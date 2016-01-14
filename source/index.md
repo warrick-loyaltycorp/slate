@@ -453,7 +453,8 @@ merchant ID | The ID of the merchant to retrieve
 ```shell
 curl /merchants \
     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X GET 
+    -X GET \
+    -d "page_key=mer_OjHXobBsSHsGTXvU"
 ```
 
 ```PHP
@@ -474,65 +475,70 @@ curl /merchants \
 > The above command returns JSON structured like this:
 
 ```json
-[
+{
+    "list":[
     {
-        "name":"Dr. Keyshawn Cruickshank IV",
-        "email":"Elmer25@Kuhn.biz",
-        "address":"0060 Jaylan Pine Apt. 094\nEast Lori, NV 71135",
-        "credit_cards":
-        [
+        "title":"Mr.",
+        "first_name":"Jasen",
+        "last_name":"Bergstrom",
+        "email":"pSawayn@yahoo.com",
+        "business_name":"Schiller, Schaden and Pagac",
+        "business_phone":"1-567-963-4476x877",
+        "business_website":"http:\/\/Runolfsdottir.com",
+        "abn":87708222866,
+        "bank_accounts":[
+        {
+            "name":"Mrs. Nikita Harber",
+            "bsb":561105,
+            "number":696777
+        }],
+        "credit_cards":[
+        {
+            "token":"459023068852943",
+            "creditCardInfo":
             {
-                "token":"4817230923470352",
-                "creditCardInfo":
-                {
-                    "pan":"514245XXXXXXX350",
-                    "expiryDate":"12\/17",
-                    "cardType":"5",
-                    "cardDescription":"Master Card"
-                }
+                "pan":"343580XXXXXX868",
+                "expiryDate":"11\/17",
+                "cardType":"2",
+                "cardDescription":"American Express"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Louvenia Morar",
-                "number":212192,
-                "branch":616398
-            }
-        ],
-        "id":"mer_TICtkVBH2HMhaaS5"
+        }],
+        "id":"mer_mjrPtIYIFUz29IB2"
     },
     {
-        "name":"Maida Schaefer",
-        "email":"Geovany.Barrows@Hirthe.com",
-        "address":"33543 Connelly Prairie\nDouglasbury, MA 58663",
-        "credit_cards":
-        [
+        "title":"Prof.",
+        "first_name":"Ines",
+        "last_name":"Gaylord",
+        "email":"Cummings.Rodger@gmail.com",
+        "business_name":"Glover-Bruen",
+        "business_phone":"(233)321-7307x23950",
+        "business_website":"http:\/\/Langosh.com",
+        "abn":32929909684,"bank_accounts":[
+        {
+            "name":"Ms. Adah Hoppe Sr.",
+            "bsb":925800,
+            "number":661430
+        }],
+        "credit_cards":[
+        {
+            "token":"8275016079732",
+            "creditCardInfo":
             {
-                "token":"3802789002339201",
-                "creditCardInfo":
-                {
-                    "pan":"547025XXXXXXX413",
-                    "expiryDate":"08\/20",
-                    "cardType":"5",
-                    "cardDescription":"Master Card"
-                }
+                "pan":"448594XXXX381",
+                "expiryDate":"12\/17",
+                "cardType":"6",
+                "cardDescription":"Visa"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Prof. Franco Wunsch II",
-                "number":457888,
-                "branch":465377
-            }
-        ],
-        "id":"mer_2zeySm9fP4WKssSX"
-    }
-]
+        }],
+        "id":"mer_t99ZVJsmaSMdFmaw"
+    }],
+    "page_key":"mer_x8Yrg15AyBqQWk5a"
+}
 ```
 
-Get a list of all merchants.
+Get a paginated list of all merchants.
+
+At most twenty five merchants are returned per call. If more merchants are available the response includes a *page_key* which can be sent in a subsquent request to fetch the next page.
 
 <aside class="warning">An administrator API key is required to manage API keys</aside>
 
@@ -804,7 +810,8 @@ customer ID | The ID of the customer to retrieve
 ```shell
 curl /customers \
     -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
-    -X GET 
+    -X GET \
+    -d "page_key=cus_PtMsPVGfgMa0QrXv"
 ```
 
 ```PHP
@@ -825,65 +832,57 @@ curl /customers \
 > The above command returns JSON structured like this:
 
 ```json
-[
+{
+    "list":[
     {
-        "name":"Ms. Kayli Donnelly",
-        "email":"Brenda.Leuschke@yahoo.com",
-        "address":"561 Marcelo Field\nWest Guadalupe, UT 44365-1757",
-        "credit_cards":
-        [
+        "email":"Gino34@Kertzmann.com",
+        "credit_cards":[
+        {
+            "token":"8442679958731",
+            "creditCardInfo":
             {
-                "token":"8554872018151104",
-                "creditCardInfo":
-                {
-                    "pan":"492933XXXXXXX138",
-                    "expiryDate":"06\/16",
-                    "cardType":"6",
-                    "cardDescription":"Visa"
-                }
+                "pan":"492931XXXX714",
+                "expiryDate":"12\/19",
+                "cardType":"6",
+                "cardDescription":"Visa"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Prof. Wilmer Champlin MD",
-                "number":119490,
-                "branch":987275
-            }
-        ],
-        "id":"cus_89d0d316f6786debcc30adabbe675b05"
+        }],
+        "bank_accounts":[
+        {
+            "name":"Brandyn Swaniawski",
+            "bsb":479540,
+            "number":120379
+        }],
+        "id":"cus_5UCb9sCEJmUqB7A9"
     },
     {
-        "name":"Gianni Orn MD",
-        "email":"Halie.Stroman@gmail.com",
-        "address":"7901 Gavin Extensions\nDurganside, NM 42294",
-        "credit_cards":
-        [
+        "email":"Champlin.Sandra@Aufderhar.biz",
+        "credit_cards":[
+        {
+            "token":"7240403533051967",
+            "creditCardInfo":
             {
-                "token":"1533969065430",
-                "creditCardInfo":
-                {
-                    "pan":"453298XXXX693",
-                    "expiryDate":"01\/20",
-                    "cardType":"6",
-                    "cardDescription":"Visa"
-                }
+                "pan":"453226XXXXXXX792",
+                "expiryDate":"07\/21",
+                "cardType":"6",
+                "cardDescription":"Visa"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Alvena Von DDS",
-                "number":909844,
-                "branch":634292
-            }
-        ],
-        "id":"cus_P3thMWG1tRvdfING"
-    }
-]
+        }],
+        "bank_accounts":[
+        {
+            "name":"Ahmad Raynor",
+            "bsb":855657,
+            "number":469006
+        }],
+        "id":"cus_BEkJxCyy0ESU1SDR"
+    }],
+    "page_key":"cus_PtMsPVGfgMa0QrXv"
+}
 ```
 
-Get a list of all customers.
+Get a paginated list of all customers.
+
+At most twenty five customers will be returned per call. If more customers are available the response includes a *page_key* which can be used to fetch the next page.
 
 ### HTTP Request
 
