@@ -164,7 +164,28 @@ ID | The API key to retrieve details for
 curl /merchants \
     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
     -X POST \
-    -d merchant='{"name":"Dr. Keyshawn Cruickshank IV","email":"Elmer25@Kuhn.biz","address":"0060 Jaylan Pine Apt. 094\nEast Lori, NV 71135","credit_cards":[{"number":"5142451063431350","expiry_date":"12\/17","cvv":856}],"bank_accounts":[{"name":"Louvenia Morar","number":212192,"branch":616398}]}'
+    -d "title=Prof." \
+    -d "first_name=Lenora" \
+    -d "last_name=Rogahn" \
+    -d "email=Buster.Schinner@Hammes.com" \
+    -d "business_name=Sawayn-Stroman" \
+    -d "business_phone=1-131-325-2208x67174" \
+    -d "business_website=http://Rempel.org" \
+    -d "abn=32370078770" \
+    -d "bank_accounts[0][name]=Mrs. Hertha Brakus" \
+    -d "bank_accounts[0][bsb]=495233" \
+    -d "bank_accounts[0][number]=765298" \
+    -d "credit_cards[0][number]=5307977191019924" \
+    -d "credit_cards[0][expiry_month]=06" \
+    -d "credit_cards[0][expiry_year]=18" \                    
+    -d "credit_cards[0][cvc]=728" \
+    -d "credit_cards[0][name]=Katrina O'Kon" \
+    -d "credit_cards[0][address_line1]=15772 Broderick Falls" \
+    -d "credit_cards[0][address_line2]=" \
+    -d "credit_cards[0][address_city]=Erinbury" \
+    -d "credit_cards[0][address_postcode]=2195" \
+    -d "credit_cards[0][address_state]=NSW" \
+    -d "credit_cards[0][address_country]=Australia"
 ```
 
 ```PHP
@@ -187,36 +208,37 @@ curl /merchants \
 ```json
 {
     "code":0,
-    "message":"Merchant created",
+    "message":"Merchant created.",
     "merchant":
     {
-        "name":"Dr. Keyshawn Cruickshank IV",
-        "email":"Elmer25@Kuhn.biz",
-        "address":"0060 Jaylan Pine Apt. 094\nEast Lori, NV 71135",
-        "credit_cards":
-        [
+        "title":"Prof.",
+        "first_name":"Lenora",
+        "last_name":"Rogahn",
+        "email":"Buster.Schinner@Hammes.com",
+        "business_name":"Sawayn-Stroman",
+        "business_phone":"1-131-325-2208x67174",
+        "business_website":"http:\/\/Rempel.org",
+        "abn":32370078770,
+        "bank_accounts": [
+        {
+            "name":"Mrs. Hertha Brakus",
+            "bsb":495233,
+            "number":765298
+        }],
+        "credit_cards":[
+        {
+            "token":"2717742183536883",
+            "creditCardInfo":
             {
-                "token":"4817230923470352",
-                "creditCardInfo":
-                {
-                    "pan":"514245XXXXXXX350",
-                    "expiryDate":"12\/17",
-                    "cardType":"5",
-                    "cardDescription":"Master Card"
-                }
+                "pan":"530797XXXXXXX924",
+                "expiryDate":"06\/18",
+                "cardType":"5",
+                "cardDescription":"Master Card"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Louvenia Morar",
-                "number":212192,
-                "branch":616398
-            }
-        ],
-        "id":"mer_TICtkVBH2HMhaaS5",
-        "secret_key":"sk_UHEtfvVqwiAUQeaEnqzFrMT5",
-        "public_key":"pk_4PNIUIwbMOrQvF91oVPFIQFR"
+        }],
+        "id":"mer_ckcBTeNgqstddBe3",
+        "secret_key":"sk_llg2kVYIEh2NTf5f2rG49pZH",
+        "public_key":"pk_08LxV74zWu2mPFQC8iLc0ATq"
     }
 }
 ```
@@ -229,6 +251,8 @@ This call returns the new merchant record, including:
 2. The merchant unique ID. Use the unique ID to retrieve the merchant.
 3. A token and PAN for each credit card. The token and PAN replace the credit card number.
 
+<aside class="warning">An administrator API key is required to manage API keys</aside>
+
 ### HTTP Request
 
 `POST /merchants`
@@ -236,10 +260,10 @@ This call returns the new merchant record, including:
 ## Update a Merchant
 
 ```shell
-curl /merchants/cus_P3thMWG1tRvdfING \
+curl /merchants/mer_xtmKq3i0MRMGDg2H \
     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
     -X PUT \
-    -d merchant='{"name":"Maida Schaefer","email":"sMorar@yahoo.com","address":"33543 Connelly Prairie\nDouglasbury, MA 58663","credit_cards":[{"token":"3802789002339201","creditCardInfo":{"pan":"547025XXXXXXX413","expiryDate":"08\/20","cardType":"5","cardDescription":"Master Card"}}],"bank_accounts":[{"name":"Prof. Franco Wunsch II","number":457888,"branch":465377}],"id":"mer_2zeySm9fP4WKssSX","secret_key":"sk_cOJPAMZGPmJgkjUpwX3Kspz4","public_key":"pk_ydrJTGR600yCBgM89QUy3rSY"}' 
+    -d "email=aGoodwin@hotmail.com"
 ```
 
 ```PHP
@@ -262,41 +286,42 @@ curl /merchants/cus_P3thMWG1tRvdfING \
 ```json
 {
     "code":0,
-    "message":"Merchant updated",
+    "message":"Merchant updated.",
     "merchant":
     {
-        "name":"Maida Schaefer",
-        "email":"sMorar@yahoo.com",
-        "address":"33543 Connelly Prairie\nDouglasbury, MA 58663",
-        "credit_cards":
-        [
+        "title":"Mr.",
+        "first_name":"Jordy",
+        "last_name":"Miller",
+        "email":"aGoodwin@hotmail.com",
+        "business_name":"Kirlin LLC",
+        "business_phone":"193.548.2607x9102",
+        "business_website":"http:\/\/Yundt.biz",
+        "abn":54684559752,
+        "bank_accounts":[
+        {
+            "name":"Abdullah Gutkowski",
+            "bsb":454173,
+            "number":197814
+        }],
+        "credit_cards":[
+        {
+            "token":"2745595004221945",
+            "creditCardInfo":
             {
-                "token":"3802789002339201",
-                "creditCardInfo":
-                {
-                    "pan":"547025XXXXXXX413",
-                    "expiryDate":"08\/20",
-                    "cardType":"5",
-                    "cardDescription":"Master Card"
-                }
+                "pan":"402400XXXXXXX658",
+                "expiryDate":"09\/20",
+                "cardType":"6",
+                "cardDescription":"Visa"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Prof. Franco Wunsch II",
-                "number":457888,
-                "branch":465377
-            }
-        ],
-        "id":"mer_2zeySm9fP4WKssSX",
-        "secret_key":"sk_cOJPAMZGPmJgkjUpwX3Kspz4",
-        "public_key":"pk_ydrJTGR600yCBgM89QUy3rSY"
+        }],
+        "id":"mer_xtmKq3i0MRMGDg2H"
     }
 }
 ```
 
 Update a merchant with new details.
+
+<aside class="warning">An administrator API key is required to manage API keys</aside>
 
 ### HTTP Request
 
@@ -341,6 +366,8 @@ curl /merchants/mer_2zeySm9fP4WKssSX \
 ```
 
 Delete a merchant record.
+
+<aside class="warning">An administrator API key is required to manage API keys</aside>
 
 ### HTTP Request
 
@@ -408,6 +435,8 @@ curl /merchants/mer_2zeySm9fP4WKssSX \
 ```
 
 Retrieve details for a merchant.
+
+<aside class="warning">An administrator API key is required to manage API keys</aside>
 
 ### HTTP Request
 
@@ -505,6 +534,8 @@ curl /merchants \
 
 Get a list of all merchants.
 
+<aside class="warning">An administrator API key is required to manage API keys</aside>
+
 ### HTTP Request
 
 `GET /merchants`
@@ -515,9 +546,23 @@ Get a list of all merchants.
 
 ```shell
 curl /customers \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X POST \
-    -d customer='{"name":"Skyla Bins Sr.","email":"Holly82@hotmail.com","address":"94034 Mireya Knolls Suite 124\nEast Liliana, OR 93969","credit_cards":[{"number":"5559039016093199","expiry_date":"05\/19","cvv":602}],"bank_accounts":[{"name":"Dorothea Walker","number":128818,"branch":632605}]}'
+    -d "email=iJohnson@yahoo.com
+    -d "credit_cards[0][number]=4024007140948844" \
+    -d "credit_cards[0][expiry_month]=04" \
+    -d "credit_cards[0][expiry_year=17" \
+    -d "credit_cards[0][cvc=506" \
+    -d "credit_cards[0][name=Luna Stamm" \
+    -d "credit_cards[0][address_line1=53326 Goyette Roads" \
+    -d "credit_cards[0][address_line2=" \
+    -d "credit_cards[0][address_city=Estellville" \
+    -d "credit_cards[0][address_postcode=3804" \
+    -d "credit_cards[0][address_state=SA" \
+    -d "credit_cards[0][address_country=Australia" \
+    -d "bank_accounts[0][name]=Immanuel Maggio" \
+    -d "bank_accounts[0][bsb]=931958" \
+    -d "bank_accounts[0][number]=137367"
 ```
 
 ```PHP
@@ -540,34 +585,28 @@ curl /customers \
 ```json
 {
     "code":0,
-    "message":"Customer created",
+    "message":"Customer created.",
     "customer":
     {
-        "name":"Skyla Bins Sr.",
-        "email":"Holly82@hotmail.com",
-        "address":"94034 Mireya Knolls Suite 124\nEast Liliana, OR 93969",
-        "credit_cards":
-        [
+        "email":"iJohnson@yahoo.com",
+        "credit_cards":[
+        {
+            "token":"6082824513618512",
+            "creditCardInfo":
             {
-                "token":"8846051300564567",
-                "creditCardInfo":
-                {
-                    "pan":"555903XXXXXXX199",
-                    "expiryDate":"05\/19",
-                    "cardType":"5",
-                    "cardDescription":"Master Card"
-                }
+                "pan":"402400XXXXXXX844",
+                "expiryDate":"04\/17",
+                "cardType":"6",
+                "cardDescription":"Visa"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Dorothea Walker",
-                "number":128818,
-                "branch":632605
-            }
-        ],
-        "id":"cus_u4enomYPXItBeEP2"
+        }],
+        "bank_accounts":[
+        {
+            "name":"Immanuel Maggio",
+            "bsb":931958,
+            "number":137367
+        }],
+        "id":"cus_e44VrNXhj9MFNNfO"
     }
 }
 ```
@@ -585,10 +624,10 @@ This call returns the new customer record, including:
 ## Update a Customer
 
 ```shell
-curl /customers/cus_P3thMWG1tRvdfING \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+curl /customers/cus_e44VrNXhj9MFNNfO \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X PUT \
-    -d customer='{"name":"Gianni Orn MD","email":"Shayna.Yundt@gmail.com","address":"7901 Gavin Extensions\nDurganside, NM 42294","credit_cards":[{"token":"1533969065430","creditCardInfo":{"pan":"453298XXXX693","expiryDate":"01\/20","cardType":"6","cardDescription":"Visa"}}],"bank_accounts":[{"name":"Alvena Von DDS","number":909844,"branch":634292}]}' 
+    -d "email=Blanda.Sofia@hotmail.com"
 ```
 
 ```PHP
@@ -611,34 +650,28 @@ curl /customers/cus_P3thMWG1tRvdfING \
 ```json
 {
     "code":0,
-    "message":"Customer updated",
+    "message":"Customer updated.",
     "customer":
     {
-        "name":"Gianni Orn MD",
-        "email":"Shayna.Yundt@gmail.com",
-        "address":"7901 Gavin Extensions\nDurganside, NM 42294",
-        "credit_cards":
-        [
+        "email":"Blanda.Sofia@hotmail.com",
+        "credit_cards":[
+        {
+            "token":"6082824513618512",
+            "creditCardInfo":
             {
-                "token":"1533969065430",
-                "creditCardInfo":
-                {
-                    "pan":"453298XXXX693",
-                    "expiryDate":"01\/20",
-                    "cardType":"6",
-                    "cardDescription":"Visa"
-                }
+                "pan":"402400XXXXXXX844",
+                "expiryDate":"04\/17",
+                "cardType":"6",
+                "cardDescription":"Visa"
             }
-        ],
-        "bank_accounts":
-        [
-            {
-                "name":"Alvena Von DDS",
-                "number":909844,
-                "branch":634292
-            }
-        ],
-        "id":"cus_P3thMWG1tRvdfING"
+        }],
+        "bank_accounts":[
+        {
+            "name":"Immanuel Maggio",
+            "bsb":931958,
+            "number":137367
+        }],
+        "id":"cus_e44VrNXhj9MFNNfO"
     }
 }
 ```
@@ -659,7 +692,7 @@ customer ID | The ID of the customer to retrieve
 
 ```shell
 curl /customers/cus_P3thMWG1tRvdfING \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X DELETE 
 ```
 
@@ -703,7 +736,7 @@ customer ID | The ID of the customer to retrieve
 
 ```shell
 curl /customers/cus_P3thMWG1tRvdfING \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X GET 
 ```
 
@@ -770,7 +803,7 @@ customer ID | The ID of the customer to retrieve
 
 ```shell
 curl /customers \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X GET 
 ```
 
@@ -862,9 +895,12 @@ Get a list of all customers.
 
 ```shell
 curl /payments \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X POST 
-    -d payment='{"token":"1479093065260287","reference":"Officia similique quaerat et eaque quo.","amount":74200,"currency":"AUD"}' 
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
+    -X POST \
+    -d "token=1726094106475018" \
+    -d "reference=Vel qui aut tenetur corrupti vero cum itaque." \
+    -d "amount=65700" \
+    -d "currency=AUD"
 ```
 
 ```PHP
@@ -887,14 +923,15 @@ curl /payments \
 ```json
 {
     "code":0,
-    "message":"Payment created",
-    "txnID":"273040",
-    "payment":{
-        "token":"1479093065260287",
-        "reference":"Officia similique quaerat et eaque quo.",
-        "amount":74200,
+    "message":"Payment created.",
+    "txnID":"282163",
+    "payment":
+    {
+        "token":"1726094106475018",
+        "reference":"Vel qui aut tenetur corrupti vero cum itaque.",
+        "amount":65700,
         "currency":"AUD",
-        "txnID":"273040"
+        "txnID":"282163"
     }
 }
 ```
@@ -912,8 +949,8 @@ The response to a successful payment includes the *txnID* which must be used whe
 ## Refund a Payment
 
 ```shell
-curl /payments/273040 \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+curl /payments/282163 \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X DELETE 
 ```
 
@@ -936,15 +973,15 @@ curl /payments/273040 \
 
 ```json
 {
-    "code":0,
-    "message":"Payment refunded",
-    "txnID":"273042",
+    "code":"00",
+    "message":"Payment refunded.",
+    "txnID":"282165",
     "refund":
     {
-        "amount":74200,
+        "amount":65700,
         "currency":"AUD",
-        "purchaseOrderNo":"Officia similique quaerat et eaque quo.",
-        "txnID":"273042"
+        "purchaseOrderNo":"Vel qui aut tenetur corrupti vero cum itaque.",
+        "txnID":"282165"
     }
 }
 ```
@@ -970,8 +1007,11 @@ txnID | The ID of the payment transaction to refund
 ```shell
 curl /fees/cc_payment \
     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -d fee='{"transactionFee":0.3,"cardRates":{"MasterCard":1.5,"Visa":1.5,"AMEX":2.9}}' \
     -X PUT 
+    -d "transactionFee=0.3" \
+    -d "[cardRates][MasterCard]=1.5" \
+    -d "[cardRates][Visa]=1.5" \
+    -d "[cardRates][AMEX]=2.9"
 ```
 
 ```PHP
@@ -1006,6 +1046,8 @@ Payment type can be one of:
 5. eft - allocated eft
 6. cheque - cheque payments
 
+<aside class="warning">An administrator API key is required to manage API keys</aside>
+
 ### HTTP Request
 
 `PUT /fees/<payment type>`
@@ -1015,53 +1057,6 @@ Payment type can be one of:
 Parameter | Description
 --------- | -----------
 payment type | The payment type to set a fee structure for.
-
-## Set fees for a specific merchant
-
-```shell
-curl /fees/cc_payment/mer_Jz1jhip325eRwhWy \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -d fee='{"transactionFee":0.4,"cardRates":{"MasterCard":1.8,"Visa":1.9,"AMEX":3.2}}' \
-    -X PUT 
-```
-
-```PHP
-```
-
-```Java
-```
-
-```Ruby
-```
-
-```Python
-```
-
-```Node
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{"code":0,"message":"Fee created."}
-```
-
-Set a fee structure for a specific payment type and merchant.
-
-The merchant fee structure overrides the general fee structure.
-
-See [Set general fees](#set-general-fees) for a list of valid payment types.
-
-### HTTP Request
-
-`PUT /fees/<payment type>/<merchant id>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-payment type | The payment type to set a fee structure for.
-merchant id | The merchant to set a fee structure for.
 
 ## Get fees
 
@@ -1104,6 +1099,8 @@ Get the fee structure for a payment type.
 
 See [Set general fees](#set-general-fees) for a list of valid payment types.
 
+<aside class="warning">An administrator API key is required to manage API keys</aside>
+
 ### HTTP Request
 
 `GET /fees/<payment type>`
@@ -1113,58 +1110,6 @@ See [Set general fees](#set-general-fees) for a list of valid payment types.
 Parameter | Description
 --------- | -----------
 payment type | The payment type to set a fee structure for.
-
-## Get merchant fees
-
-```shell
-curl /fees/cc_payment/mer_Jz1jhip325eRwhWy \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X GET 
-```
-
-```PHP
-```
-
-```Java
-```
-
-```Ruby
-```
-
-```Python
-```
-
-```Node
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "transactionFee":0.3,
-    "cardRates":
-    {
-        "MasterCard":1.5,
-        "Visa":1.5,
-        "AMEX":2.9
-    }
-}
-```
-
-Get the fee structure for a payment type and merchant.
-
-See [Set general fees](#set-general-fees) for a list of valid payment types.
-
-### HTTP Request
-
-`GET /fees/<payment type>/<merchant id>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-payment type | The payment type to set a fee structure for.
-merchant id | The merchant to set a fee structure for.
 
 ## Delete general fees
 
@@ -1202,6 +1147,8 @@ Delete a general fee structure for a payment type.
 
 See [Set general fees](#set-general-fees) for a list of valid payment types.
 
+<aside class="warning">An administrator API key is required to manage API keys</aside>
+
 ### HTTP Request
 
 `DELETE /fees/<payment type>`
@@ -1212,49 +1159,3 @@ Parameter | Description
 --------- | -----------
 payment type | The payment type to delete a fee structure for.
 
-## Delete merchant fees
-
-```shell
-curl /fees/cc_payment/mer_Jz1jhip325eRwhWy \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X DELETE 
-```
-
-```PHP
-```
-
-```Java
-```
-
-```Ruby
-```
-
-```Python
-```
-
-```Node
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "code":0,
-    "message":"Fee deleted."
-}
-```
-
-Delete the fee structure for a payment type and merchant.
-
-See [Set general fees](#set-general-fees) for a list of valid payment types.
-
-### HTTP Request
-
-`DELETE /fees/<payment type>/<merchant id>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-payment type | The payment type to delete a fee structure for.
-merchant id | The merchant to delete a fee structure for.
