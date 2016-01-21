@@ -156,36 +156,80 @@ Parameter | Description
 --------- | -----------
 ID | The API key to retrieve details for
 
-# Merchants 
+# Tokens
 
-## Create a Merchant
+## Create a credit card token
 
 ```shell
-curl /merchants \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X POST \
-    -d "title=Prof." \
-    -d "first_name=Lenora" \
-    -d "last_name=Rogahn" \
-    -d "email=Buster.Schinner@Hammes.com" \
-    -d "business_name=Sawayn-Stroman" \
-    -d "business_phone=1-131-325-2208x67174" \
-    -d "business_website=http://Rempel.org" \
-    -d "abn=32370078770" \
-    -d "bank_accounts[0][name]=Mrs. Hertha Brakus" \
-    -d "bank_accounts[0][bsb]=495233" \
-    -d "bank_accounts[0][number]=765298" \
-    -d "credit_cards[0][number]=5307977191019924" \
-    -d "credit_cards[0][expiry_month]=06" \
-    -d "credit_cards[0][expiry_year]=18" \                    
-    -d "credit_cards[0][cvc]=728" \
-    -d "credit_cards[0][name]=Katrina O'Kon" \
-    -d "credit_cards[0][address_line1]=15772 Broderick Falls" \
-    -d "credit_cards[0][address_line2]=" \
-    -d "credit_cards[0][address_city]=Erinbury" \
-    -d "credit_cards[0][address_postcode]=2195" \
-    -d "credit_cards[0][address_state]=NSW" \
-    -d "credit_cards[0][address_country]=Australia"
+    curl /tokens \ 
+        -u pk_test_cTNdimnqAb625Kjl7JQFbj4c: \
+        -X POST \
+        -d "card[name]=Dr. Nichole Casper V" \
+        -d "card[number]=341694306848167" \
+        -d "card[expiry_month]=07" \
+        -d "card[expiry_year]=18" \
+        -d "card[cvc]=609" \
+        -d "card[address_line1]=934 Bechtelar Knolls" \
+        -d "card[address_line2]=" \
+        -d "card[address_city]=Willmsport" \
+        -d "card[address_postcode]=5357" \
+        -d "card[address_state]=ACT" \
+        -d "card[address_country]=Australia"
+```     
+
+```PHP  
+```
+                                                                             
+```Java 
+```         
+                                                                                     
+```Ruby
+```     
+                                                                                             
+```Python
+```     
+                                                                                                     
+```Node     
+```     
+
+> The above command returns JSON structured like this:
+                                                                                                             
+```json 
+{
+    "code": 0, 
+    "message": "Token created.",
+    "token": {
+        "token": "tok_6KilthplNtDCnajd",
+        "info": {
+            "name": "Dr. Nichole Casper V",
+            "expiry_month": "07",
+            "expiry_year": 18,
+            "cvc": 609,
+            "address_line1": "934 Bechtelar Knolls",
+            "address_line2": "",
+            "address_city": "Willmsport",
+            "address_postcode": 5357,
+            "address_state": "ACT",
+            "address_country": "Australia",
+            "pan": "34169XXXXXXXX167"
+        }
+    }   
+}
+```     
+                                                                                                                 
+Create a credit card token.
+                                                                                                                     
+### HTTP Request
+
+`POST /tokens`
+
+## Retrieve a credit card token
+
+
+```shell
+curl /tokens/tok_6KilthplNtDCnajd \
+     -u sk_test_YzvwgQwl1BO4xE3hV57S1QsE: \
+     -X GET \
 ```
 
 ```PHP
@@ -207,38 +251,212 @@ curl /merchants \
 
 ```json
 {
-    "code":0,
-    "message":"Merchant created.",
-    "merchant":
-    {
-        "title":"Prof.",
-        "first_name":"Lenora",
-        "last_name":"Rogahn",
-        "email":"Buster.Schinner@Hammes.com",
-        "business_name":"Sawayn-Stroman",
-        "business_phone":"1-131-325-2208x67174",
-        "business_website":"http:\/\/Rempel.org",
-        "abn":32370078770,
-        "bank_accounts": [
-        {
-            "name":"Mrs. Hertha Brakus",
-            "bsb":495233,
-            "number":765298
-        }],
-        "credit_cards":[
-        {
-            "token":"2717742183536883",
-            "creditCardInfo":
-            {
-                "pan":"530797XXXXXXX924",
-                "expiryDate":"06\/18",
-                "cardType":"5",
-                "cardDescription":"Master Card"
+    "token": "tok_6KilthplNtDCnajd",
+    "info": {
+        "expiry_month": "07",
+        "cvc": 609,
+        "address_line2": null,
+        "address_line1": "934 Bechtelar Knolls",
+        "address_country": "Australia",
+        "name": "Dr. Nichole Casper V",
+        "address_state": "ACT",
+        "address_postcode": 5357,
+        "pan": "34169XXXXXXXX167",
+        "expiry_year": 18,
+        "address_city": "Willmsport"
+    }
+}
+```
+
+Retrieve a credit card token.
+
+### HTTP Request
+
+`GET /tokens/<token ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+token ID | The ID of the token to retrieve
+
+## Create a bank account token
+
+```shell
+curl /tokens \
+     -u pk_test_Lg6j5tD4CezAMc4nOcm3Hxmr: \
+     -X POST \
+     -d "bank_account[name]=Jimmy Grimes V" \
+     -d "bank_account[number]=628279" \
+     -d "bank_account[bsb]=343178"
+ ```
+
+ ```PHP
+ ```
+
+ ```Java
+ ```
+
+ ```Ruby
+ ```
+
+ ```Python
+ ```
+
+ ```Node
+ ```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Token created.",
+    "token": {
+        "token": "tok_DPvhAj8CiZJGEmy4",
+            "info": {
+                "name": "Jimmy Grimes V",
+                "number": 628279,
+                "bsb": 343178
             }
-        }],
-        "id":"mer_ckcBTeNgqstddBe3",
-        "secret_key":"sk_llg2kVYIEh2NTf5f2rG49pZH",
-        "public_key":"pk_08LxV74zWu2mPFQC8iLc0ATq"
+        }
+    }
+```
+
+Create a token for a bank account.
+
+### HTTP Request
+
+`POST /tokens`
+
+## Get a bank account token
+
+```shell
+curl /tokens/tok_DPvhAj8CiZJGEmy4 \
+     -u sk_test_4kOEEQXZxNRS6VLtg63wLdRT: \
+     -X GET \
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "token": "tok_DPvhAj8CiZJGEmy4",
+    "info": {
+        "name": "Jimmy Grimes V",
+        "bsb": 343178,
+        "number": 628279
+    }
+}
+```
+
+Get a bank account token.
+
+### HTTP Request
+
+`GET /tokens/<token ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+token ID | The ID of the token to retrieve
+
+# Merchants 
+
+```shell
+curl /merchants \
+     -u sk_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X POST \
+     -d "title=Prof." \
+     -d "first_name=Ryleigh" \
+     -d "last_name=Hayes" \
+     -d "email=vance.champlin@hane.net" \
+     -d "business_name=Braun, Kulas and Heaney" \
+     -d "business_phone=249-839-5908" \
+     -d "business_website=http://lang.com" \
+     -d "abn=18307279381" \
+     -d "credit_card[name]=Madalyn Harris" \
+     -d "credit_card[number]=5144316381526579" \
+     -d "credit_card[expiry_month]=12" \
+     -d "credit_card[expiry_year]=18" \
+     -d "credit_card[cvc]=788" \
+     -d "credit_card[address_line1]=53289 Dickens Crest" \
+     -d "credit_card[address_line2]=" \
+     -d "credit_card[address_city]=New Cletusberg" \
+     -d "credit_card[address_postcode]=3924" \
+     -d "credit_card[address_state]=NSW" \
+     -d "credit_card[address_country]=Australia" \
+     -d "bank_account[name]=Prof. Margie Schuster DDS" \
+     -d "bank_account[number]=299481" \
+     -d "bank_account[bsb]=692501"
+ ```
+
+ ```PHP
+ ```
+
+ ```Java
+ ```
+
+ ```Ruby
+ ```
+
+ ```Python
+ ```
+
+ ```Node
+ ```
+
+ > The above command returns JSON structured like this:
+```json
+{
+    "code": 0,
+    "message": "Merchant created.",
+    "merchant": {
+        "title": "Prof.",
+        "first_name": "Ryleigh",
+        "last_name": "Hayes",
+        "email": "vance.champlin@hane.net",
+        "business_name": "Braun, Kulas and Heaney",
+        "business_phone": "249-839-5908",
+        "business_website": "http:\/\/lang.com",
+        "abn": 18307279381,        
+        "bank_accounts": [            
+            {
+                "name": "Prof. Margie Schuster DDS",
+                "number": 299481,
+                "bsb": 692501
+            }
+        ],
+        "credit_cards": [
+            {
+                "token": "tok_s02GmYwLhGfgwBDI",
+                "creditCardInfo": {
+                    "pan": "514431XXXXXXX579",
+                    "expiryDate": "12\/18",
+                    "cardType": "5",
+                    "cardDescription": "Master Card"
+                }
+            }
+        ],
+        "id": "mer_3KDrwOWxVk9QQetd",
+        "secret_key": "sk_UbT2kNVBV5zd47jjKMpaq4eX",
+        "public_key": "pk_asVs4nMBxiLe5T9AO5y9Vh3Y"
     }
 }
 ```
@@ -550,69 +768,72 @@ At most twenty five merchants are returned per call. If more merchants are avail
 
 ## Create a Customer
 
+##<Route name>
+
 ```shell
 curl /customers \
-    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
-    -X POST \
-    -d "email=iJohnson@yahoo.com
-    -d "credit_cards[0][number]=4024007140948844" \
-    -d "credit_cards[0][expiry_month]=04" \
-    -d "credit_cards[0][expiry_year=17" \
-    -d "credit_cards[0][cvc=506" \
-    -d "credit_cards[0][name=Luna Stamm" \
-    -d "credit_cards[0][address_line1=53326 Goyette Roads" \
-    -d "credit_cards[0][address_line2=" \
-    -d "credit_cards[0][address_city=Estellville" \
-    -d "credit_cards[0][address_postcode=3804" \
-    -d "credit_cards[0][address_state=SA" \
-    -d "credit_cards[0][address_country=Australia" \
-    -d "bank_accounts[0][name]=Immanuel Maggio" \
-    -d "bank_accounts[0][bsb]=931958" \
-    -d "bank_accounts[0][number]=137367"
-```
+     -u sk_jPnwDoXglGtnJ5KmBT8iAFeT: \
+     -X POST \
+     -d "email=kristina.krajcik@gmail.com" \
+     -d "credit_card[name]=Lamont Farrell" \
+     -d "credit_card[number]=5522860686208732" \
+     -d "credit_card[expiry_month]=02" \
+     -d "credit_card[expiry_year]=17" \
+     -d "credit_card[cvc]=818" \
+     -d "credit_card[address_line1]=5735 Adelia Orchard" \     
+     -d "credit_card[address_line2]=" \
+     -d "credit_card[address_city]=East Chanelle" \
+     -d "credit_card[address_postcode]=6309" \
+     -d "credit_card[address_state]=NT" \
+     -d "credit_card[address_country]=Australia" \
+     -d "bank_account[name]=Rhoda Waelchi" \
+     -d "bank_account[number]=302083" \
+     -d "bank_account[bsb]=105964"
+ ```
 
-```PHP
-```
+ ```PHP
+ ```
 
-```Java
-```
+ ```Java
+ ```
 
-```Ruby
-```
+ ```Ruby
+ ```
 
-```Python
-```
+ ```Python
+ ```
 
-```Node
-```
+ ```Node
+ ```
 
-> The above command returns JSON structured like this:
+ > The above command returns JSON structured like this:
 
 ```json
 {
-    "code":0,
-    "message":"Customer created.",
-    "customer":
-    {
-        "email":"iJohnson@yahoo.com",
-        "credit_cards":[
-        {
-            "token":"6082824513618512",
-            "creditCardInfo":
+    "code": 0,
+    "message": "Customer created.",
+    "customer": {
+        "email": "kristina.krajcik@gmail.com",
+        "bank_accounts": [
             {
-                "pan":"402400XXXXXXX844",
-                "expiryDate":"04\/17",
-                "cardType":"6",
-                "cardDescription":"Visa"
+                "name": "Rhoda Waelchi",
+                "number": 302083,
+                "bsb": 105964
             }
-        }],
-        "bank_accounts":[
-        {
-            "name":"Immanuel Maggio",
-            "bsb":931958,
-            "number":137367
-        }],
-        "id":"cus_e44VrNXhj9MFNNfO"
+        ],
+        "credit_cards": [
+            {
+                "token": "tok_gUrrYIWKq2xtZlQD",
+                "creditCardInfo": {
+                    "pan": "552286XXXXXXX732",
+                    "expiryDate": "02\/17",
+                    "cardType": "5",
+                    "cardDescription": "Master Card"
+                }
+            }
+        ],
+        "id": "cus_MuSMXuHnWRL7qN3b",
+        "merchant_id": "sk_jPnwDoXglGtnJ5KmBT8iAFeT"
     }
 }
 ```
@@ -620,6 +841,7 @@ curl /customers \
 Create a new customer.
 
 This call returns the new customer record, including:
+
 1. The customer unique ID. Use the unique ID to retrieve the customer
 2. A token and PAN for each credit card. The token and PAN replace the credit card number.
 
@@ -888,6 +1110,174 @@ At most twenty five customers will be returned per call. If more customers are a
 
 `GET /customers`
 
+# Cards
+## Add a card
+
+```shell
+curl /merchants/mer_kXwC0TX1m7yh1lBE/cards \
+     -u sk_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X POST \
+     -d "credit_card[name]=Ms. Eloisa Satterfield Sr." \
+     -d "credit_card[number]=5188908314542199" \
+     -d "credit_card[expiry_month]=10" \
+     -d "credit_card[expiry_year]=17" \
+     -d "credit_card[cvc]=680" \
+     -d "credit_card[address_line1]=19312 Collins Viaduct" \
+     -d "credit_card[address_line2]=" \
+     -d "credit_card[address_city]=Lake Aubreyfort" \
+     -d "credit_card[address_postcode]=6426" \
+     -d "credit_card[address_state]=QLD" \
+     -d "credit_card[address_country]=Australia"
+ ```
+
+ ```PHP
+ ```
+
+ ```Java
+ ```
+
+ ```Ruby
+ ```
+
+ ```Python
+ ```
+
+ ```Node
+ ```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Credit card created.",
+    "merchant": {
+        "business_name": "Sawayn-Gutmann",
+        "business_phone": "435-371-5159",
+        "credit_cards": [
+            {
+                "creditCardInfo": {
+                    "expiryDate": "09\/18",
+                    "cardType": "6",
+                    "pan": "448545XXXX677",
+                    "cardDescription": "Visa"
+                },
+                "token": "tok_2eyJrNjqUw4YwS9u"
+            },
+            {
+                "token": "tok_H7bb4RBV3mbmb560",
+                "creditCardInfo": {
+                    "pan": "518890XXXXXXX199",
+                    "expiryDate": "10\/17",
+                    "cardType": "5",
+                    "cardDescription": "Master Card"
+                }
+            }
+        ],
+        "last_name": "Schmidt",
+        "bank_accounts": [
+            {
+                "name": "Demarco Jerde",
+                "bsb": 154166,
+                "number": 672749
+            }
+        ],
+        "title": "Prof.",
+        "abn": 44491048695,
+        "first_name": "Jackson",
+        "email": "zheller@yahoo.com",
+        "business_website": "http:\/\/hauck.com",
+        "id": "mer_kXwC0TX1m7yh1lBE"
+    }
+}
+```
+
+Add a card to this account
+
+### HTTP Request
+
+`POST /merchants/<merchant ID>/cards`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant ID | The ID of the merchant to add a card to 
+
+## Remove a card from an account
+
+```shell
+curl /merchants/mer_kXwC0TX1m7yh1lBE/cards/tok_H7bb4RBV3mbmb560 \
+     -u sk_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X DELETE
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+    {
+        "code": 0,
+        "message": "Credit card deleted.",
+        "merchant": {
+            "business_name": "Sawayn-Gutmann",
+            "business_phone": "435-371-5159",
+            "credit_cards": [
+                {
+                    "creditCardInfo": {
+                        "expiryDate": "09\/18",
+                        "cardType": "6",
+                        "pan": "448545XXXX677",
+                        "cardDescription": "Visa"
+                    },
+                    "token": "tok_2eyJrNjqUw4YwS9u"
+                }
+            ],
+            "last_name": "Schmidt",
+            "bank_accounts": [
+                {
+                    "name": "Demarco Jerde",
+                    "bsb": 154166,
+                    "number": 672749
+                }
+            ],
+            "title": "Prof.",
+            "abn": 44491048695,
+            "first_name": "Jackson",
+            "email": "zheller@yahoo.com",
+            "business_website": "http:\/\/hauck.com",
+            "id": "mer_kXwC0TX1m7yh1lBE"
+        }
+    }
+```
+
+Remove a card from an account.
+
+### HTTP Request
+
+`DELETE /merchants/<merchant ID>/cards/<token>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant ID | The ID of the merchant to add a card to 
+token | The token for the card to remove
+
 # Payments 
 
 ## Create a Payment
@@ -998,6 +1388,109 @@ The transaction ID returned by an earlier call to create a payment must be provi
 Parameter | Description
 --------- | -----------
 txnID | The ID of the payment transaction to refund
+
+# Transfers
+
+## Create a transfer
+
+```shell
+curl /transfers \
+     -u sk_test_lFWxyN7FVnLWYh7sYDarBVRL: \
+     -X POST \
+     -d "amount=2439" \
+     -d "currency=AUD" \
+     -d "destination=tok_l8F0xt4lzUPWlzzG" \
+     -d "description=Omnis aliquid necessitatibus itaque aut eum corrupti."
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "transfer created.",
+    "transfer": {
+        "amount": 2439,
+        "currency": "AUD",
+        "description": "Omnis aliquid necessitatibus itaque aut eum corrupti.",
+        "destination": "tok_l8F0xt4lzUPWlzzG",
+        "id": "tfr_JYEzwbKqSdF0Z1kY",
+        "merchant_id": "mer_8pyqskBUJasZGPDQ",
+        "status": 0
+    }
+}
+```
+
+Create a new transfer.
+
+### HTTP Request
+
+`POST /transfers`
+
+## Get transfer details
+
+```shell
+curl /transfers/tfr_JYEzwbKqSdF0Z1kY \
+     -u sk_test_lFWxyN7FVnLWYh7sYDarBVRL: \
+     -X GET \
+
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "amount": 2439,
+    "destination": "tok_l8F0xt4lzUPWlzzG",
+    "description": "Omnis aliquid necessitatibus itaque aut eum corrupti.",
+    "currency": "AUD",
+    "status": 0,
+    "id": "tfr_JYEzwbKqSdF0Z1kY",
+    "merchant_id": "mer_8pyqskBUJasZGPDQ"
+}
+```
+
+Get transfer details.
+
+### HTTP Request
+
+`GET /transfers/<transfer ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+transfer ID | The ID of the transfer to retrieve
 
 # Fees
 
