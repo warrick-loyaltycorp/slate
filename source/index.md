@@ -1651,3 +1651,87 @@ Parameter | Description
 --------- | -----------
 payment type | The payment type to delete a fee structure for.
 
+# Balances
+
+## Get current balance
+
+```shell
+curl /balance \
+     -u sk_test_JH6Hc4vNAXOlS2IKQHQij85n: \
+     -X GET \
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "AUD": 32672
+}
+```
+
+Get current balance.
+
+### HTTP Request
+
+`GET /balance`
+
+## Get balance history
+
+```shell
+curl /balance/history \
+     -u sk_test_JH6Hc4vNAXOlS2IKQHQij85n: \
+     -X GET \
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "list": [
+        {
+            "created_at": "2016-01-22 01:01:07",
+            "merchant_id": "mer_ZEv95JWyBXC3yQpL",
+            "type": "cc_payment",
+            "version": 1,
+            "txn_id": "txn_2EDan22JAwm4vkRH",
+            "updated_at": "2016-01-22 01:01:07",
+        }
+    ]
+}
+```
+
+Get the list of transactions that have contributed to a balance.
+
+### HTTP Request
+
+`GET /balance/history`
