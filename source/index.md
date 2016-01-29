@@ -1278,6 +1278,232 @@ Parameter | Description
 merchant ID | The ID of the merchant to add a card to 
 token | The token for the card to remove
 
+# Bank Accounts
+
+## Add a bank account
+
+```shell
+curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X POST \
+     -d "bank_account[name]=Coleman Marks" \
+     -d "bank_account[number]=347933" \
+     -d "bank_account[bsb]=587061"
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Bank account created.",
+    "merchant": {
+        "business_name": "Stoltenberg PLC",
+        "last_name": "Windler",
+        "title": "Miss",
+        "abn": 77471188579,
+        "version": 4,
+        "business_website": "http:\/\/halvorson.biz",
+        "statement_descriptor": "Pay Stoltenberg PLC",
+        "business_phone": "218-788-1937",
+        "balance": {
+            "AUD": 0
+        },
+        "credit_cards": [
+            {
+                "token": "tok_MaLv1xcgAhxocNtY",
+                "info": {
+                    "expiry_month": "03",
+                    "cvc": 492,
+                    "address_line2": null,
+                    "address_line1": "28308 Aurelia Corner",
+                    "address_country": "Australia",
+                    "name": "Prof. Mckenzie Klocko",
+                    "address_state": "TAS",
+                    "address_postcode": 6016,
+                    "pan": "49293XXXXXXXX217",
+                    "expiry_year": 19,
+                    "address_city": "Lake Dawn"
+                }
+            },
+            {
+                "token": "tok_YY4xwAsNkp9gWvAh",
+                "info": {
+                    "expiry_month": "08",
+                    "cvc": 760,
+                    "address_line2": null,
+                    "address_line1": "371 Bernhard Mountains",
+                    "address_country": "Australia",
+                    "name": "Prof. Kenton Smitham V",
+                    "address_state": "WA",
+                    "address_postcode": 3606,
+                    "pan": "44341XXXXXXXX886",
+                    "expiry_year": 21,
+                    "address_city": "West Reyes"
+                }
+            }
+        ],
+        "bank_accounts": [
+            {
+                "token": "tok_2QYecX57qWC1y9BE",
+                "info": {
+                    "name": "Devon Sporer",
+                    "bsb": 601023,
+                    "number": 928740
+                }
+            },
+            {
+                "token": "tok_YuWCnw5qokoT2QMR",
+                "info": {
+                    "name": "Coleman Marks",
+                    "number": 347933,
+                    "bsb": 587061
+                }
+            }
+        ],
+        "first_name": "Trystan",
+        "email": "casimir47@rowe.com",
+        "id": "mer_vttc1znlfHvbRKww",
+        "updated_at": "2016-01-27 05:01:27",
+        "created_at": "2016-01-27 05:01:27"
+    }
+}
+```
+
+Add a bank account to a merchant or customer account
+
+### HTTP Request
+
+`POST /merchants/<merchant id>/bankAccounts`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant id | The ID of the merchant to add a bank account to
+
+
+## Delete a bank account
+
+```shell
+curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts/tok_YuWCnw5qokoT2QMR \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X DELETE \
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Bank account deleted.",
+    "merchant": {
+        "business_name": "Stoltenberg PLC",
+        "last_name": "Windler",
+        "title": "Miss",
+        "abn": 77471188579,
+        "version": 5,
+        "business_website": "http:\/\/halvorson.biz",
+        "statement_descriptor": "Pay Stoltenberg PLC",
+        "business_phone": "218-788-1937",
+        "balance": {
+            "AUD": 0
+        },
+        "credit_cards": [
+            {
+                "token": "tok_MaLv1xcgAhxocNtY",
+                "info": {
+                    "expiry_month": "03",
+                    "cvc": 492,
+                    "address_line2": null,
+                    "address_line1": "28308 Aurelia Corner",
+                    "address_country": "Australia",
+                    "name": "Prof. Mckenzie Klocko",
+                    "address_state": "TAS",
+                    "address_postcode": 6016,
+                    "pan": "49293XXXXXXXX217",
+                    "expiry_year": 19,
+                    "address_city": "Lake Dawn"
+                }
+            },
+            {
+                "token": "tok_YY4xwAsNkp9gWvAh",
+                "info": {
+                    "expiry_month": "08",
+                    "cvc": 760,
+                    "address_line2": null,
+                    "address_line1": "371 Bernhard Mountains",
+                    "address_country": "Australia",
+                    "name": "Prof. Kenton Smitham V",
+                    "address_state": "WA",
+                    "address_postcode": 3606,
+                    "pan": "44341XXXXXXXX886",
+                    "expiry_year": 21,
+                    "address_city": "West Reyes"
+                }
+            }
+        ],
+        "bank_accounts": [
+            {
+                "token": "tok_2QYecX57qWC1y9BE",
+                "info": {
+                    "name": "Devon Sporer",
+                    "bsb": 601023,
+                    "number": 928740
+                }
+            }
+        ],
+        "first_name": "Trystan",
+        "email": "casimir47@rowe.com",
+        "id": "mer_vttc1znlfHvbRKww",
+        "updated_at": "2016-01-27 05:01:27",
+        "created_at": "2016-01-27 05:01:27"
+    }
+}
+```
+
+Delete a bank account.
+
+### HTTP Request
+
+`DELETE /merchants/<merchant id>/bankAccounts/<bank account token>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+merchant id | The ID of the merchant to remove a bank account from
+bank account token | The token of the bak account to remove
+
 # Payments 
 
 ## Create a Payment
@@ -1482,6 +1708,33 @@ curl /transfers/tfr_JYEzwbKqSdF0Z1kY \
 
 Get transfer details.
 
+A transfer is processed through several states:
+
+Status | Description
+------ | -----------
+0      | Created - the transfer is newly created and has not yet been processed
+1      | Queued - the transfer has been submitted for processing
+2      | Pending - the payment processing institution has acknowledge receipt of the transfer request
+3      | Failed - The transfer has failed. More information is provided in *status_reason*
+4      | Completed - The payment institution has accepted the trasfer for processing
+5      | Disbursed - The payment has been disbursed
+6      | Returned - The payment has been reversed. A reason code is provided in *status_reason*.
+
+For returns the status reason contains one of the following codes:
+
+Code | Description
+---- | -----------
+1    | Invalid BSB number 
+2    | Payment stopped 
+3    | Account closed 
+4    | Customer deceased 
+5    | No account or incorrect account number 
+6    | Refer to customer 
+8    | Invalid User ID Number 
+9    | Technically invalid
+
+When the status changes the *statusDate* is updated.
+
 ### HTTP Request
 
 `GET /transfers/<transfer ID>`
@@ -1531,12 +1784,13 @@ Set a general fee structure for a specific payment type.
 
 Payment type can be one of:
 
-1. cc_payment - credit card payments
-2. direct_debit - direct debit payments
-3. bpay - BPAY payments
-4. auspost - AUSPost payments
-5. eft - allocated eft
-6. cheque - cheque payments
+Type             | Desccription
+----             | ------------
+cc_payment       | A credit card payment
+cc_refund        | A credit card refund
+bpay             | A BPAY payment
+bpay_correction  | A BPAY correction
+bpay_reversal    | A BPAY reversal
 
 <aside class="warning">An administrator API key is required to manage API keys</aside>
 
@@ -1734,4 +1988,28 @@ Get the list of transactions that have contributed to a balance.
 
 ### HTTP Request
 
-`GET /balance/history`
+`GET /balance/history?from=<from date>&to=<to date>&customer=<customer id>&token=<token>&currency=<currency>&type=<type>`
+
+### URL Parameters
+
+<aside class="info">All parameters are optional. If no parameters are provided all transactions are returned.</aside>
+
+Parameter   | Description
+---------   | -----------
+from date   | The earlest date to include in the report
+to date     | The latest date to include in the report
+customer id | Show only transactions for the given customer
+token       | Show only transactions for the given token (credit card or bank account)
+currency    | Show only transactions for the given currenct code, e.g. AUD
+type        | Show only transactions of the given type
+
+Type can be any of the following:
+
+Type             | Desccription
+----             | ------------
+cc_payment       | A credit card payment
+cc_refund        | A credit card refund
+bpay             | A BPAY payment
+bpay_correction  | A BPAY correction
+bpay_reversal    | A BPAY reversal
+
