@@ -1110,7 +1110,7 @@ At most twenty five customers will be returned per call. If more customers are a
 
 `GET /customers`
 
-# Cards
+# Cards (Merchants)
 ## Add a card
 
 ```shell
@@ -1278,13 +1278,207 @@ Parameter | Description
 merchant ID | The ID of the merchant to add a card to 
 token | The token for the card to remove
 
-# Bank Accounts
+# Cards (Customers)
+
+## Add a card
+
+```shell
+curl /customers/cus_ZO1gllSfTvQMZdYu/cards \
+         -u sk_test_mFWVbfH4JpsA25mpbfZwhbhw: \
+         -X POST \
+         -d "credit_card[name]=Oran Borer" \
+         -d "credit_card[number]=4916454547269724" \
+         -d "credit_card[expiry_month]=01" \
+         -d "credit_card[expiry_year]=17" \
+         -d "credit_card[cvc]=503" \
+         -d "credit_card[address_line1]=12898 Ernser Shoal" \
+         -d "credit_card[address_line2]=" \
+         -d "credit_card[address_city]=Arloberg" \
+         -d "credit_card[address_postcode]=6846" \
+         -d "credit_card[address_state]=NSW" \
+         -d "credit_card[address_country]=Australia"
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Credit card created.",
+    "customer": {
+        "credit_cards": [
+            {
+                "token": "tok_fgt2qhBFos16rtVD",
+                "info": {
+                    "expiry_month": "10",
+                    "cvc": 929,
+                    "address_line2": null,
+                    "address_line1": "4017 Camden Mews",
+                    "address_country": "Australia",
+                    "name": "Bette Rau Jr.",
+                    "address_state": "NT",
+                    "clearingAccount": null,
+                    "address_postcode": 4117,
+                    "pan": "40240XXXXXXXX448",
+                    "expiry_year": 18,
+                    "address_city": "West Elvis"
+                }
+            },
+            {
+                "token": "tok_MpLZrSXNU3mQp3eS",
+                "info": {
+                    "name": "Oran Borer",
+                    "expiry_month": "01",
+                    "expiry_year": 17,
+                    "cvc": 503,
+                    "address_line1": "12898 Ernser Shoal",
+                    "address_line2": "",
+                    "address_city": "Arloberg",
+                    "address_postcode": 6846,
+                    "address_state": "NSW",
+                    "address_country": "Australia",
+                    "clearingAccount": null,
+                    "pan": "49164XXXXXXXX724"
+                }
+            }
+        ],
+        "bank_accounts": [
+            {
+                "token": "tok_T6ICAtj9EA7JLcHm",
+                "info": {
+                    "name": "Pearl Bahringer",
+                    "bsb": 318633,
+                    "clearingAccount": null,
+                    "number": 919109
+                }
+            }
+        ],
+        "email": "leann.bernier@hotmail.com",
+        "id": "cus_ZO1gllSfTvQMZdYu",
+        "merchant_id": "mer_JqVHiprqD1fxuIgL",
+        "updated_at": "2016-01-29 04:01:20",
+        "created_at": "2016-01-29 04:01:20",
+        "version": 1
+    }
+}
+```
+
+Add a credit card to a customer account.
+
+### HTTP Request
+
+`POST /customers/<customer id>/cards`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+customer ID | The ID of the customer to add a card to 
+
+## Delete a card
+
+```shell
+curl /customers/cus_tTsMhz5RYPDog9Ua/cards/tok_PisfMAt8ILjcrGuN \
+     -u sk_test_MjUMEIEkqVpemreYEyYJMRvT: \
+     -X DELETE \
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Credit card deleted.",
+    "customer": {
+        "credit_cards": [
+        {
+            "token": "tok_gSz4xDBUYima9Yr0",
+            "info": {
+                "expiry_month": "09",
+                "cvc": 476,
+                "address_line2": null,
+                "address_line1": "52696 Dawson Vista",
+                "address_country": "Australia",
+                "name": "Gardner Gaylord",
+                "address_state": "SA",
+                "clearingAccount": null,
+                "address_postcode": 5978,
+                "pan": "37771XXXXXXXX886",
+                "expiry_year": 17,
+                "address_city": "East Monty"
+            }
+        }
+        ],
+        "bank_accounts": [
+            {
+                "token": "tok_Dai6e1jqfY7Wo946",
+                "info": {
+                    "name": "Miss Litzy Hudson DVM",
+                    "bsb": 604526,
+                    "clearingAccount": null,
+                    "number": 104578
+                }
+            }
+        ],
+        "email": "cordie40@pacocha.info",
+        "id": "cus_tTsMhz5RYPDog9Ua",
+        "merchant_id": "mer_3YnwyFOLKI1YZnja",
+        "updated_at": "2016-01-29 05:01:19",
+        "version": 1
+    }
+}
+```
+
+Delete a credit card from a customer account.
+
+### HTTP Request
+
+`DELETE /customers/<customer id>/cards/<token>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+customer id | The id of the customer to add a card to 
+token | The token for the card to remove
+
+# Bank Accounts (Merchants)
 
 ## Add a bank account
 
-```shell
-curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts \
-     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+            ```shell
+                curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts \
+                -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
      -X POST \
      -d "bank_account[name]=Coleman Marks" \
      -d "bank_account[number]=347933" \
@@ -1502,15 +1696,228 @@ Delete a bank account.
 Parameter | Description
 --------- | -----------
 merchant id | The ID of the merchant to remove a bank account from
-bank account token | The token of the bak account to remove
+bank account token | The token of the bank account to remove
+
+# Bank Accounts (Customers)
+
+## Add a bank account
+
+```shell
+curl /customers/cus_ZO1gllSfTvQMZdYu/bankAccounts \
+     -u sk_test_mFWVbfH4JpsA25mpbfZwhbhw: \
+     -X POST \
+     -d "bank_account[name]=Hoyt Botsford" \
+     -d "bank_account[number]=559392" \
+     -d "bank_account[bsb]=701670"
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+        "message": "Bank account created.",
+        "customer": {
+            "credit_cards": [
+            {
+                "token": "tok_fgt2qhBFos16rtVD",
+                "info": {
+                    "expiry_month": "10",
+                    "cvc": 929,
+                    "address_line2": null,
+                    "address_line1": "4017 Camden Mews",
+                    "address_country": "Australia",                    
+                    "name": "Bette Rau Jr.",                    
+                    "address_state": "NT",                    
+                    "clearingAccount": null,
+                    "address_postcode": 4117,
+                    "pan": "40240XXXXXXXX448",
+                    "expiry_year": 18,
+                    "address_city": "West Elvis"
+                }
+            },
+            {
+                "token": "tok_MpLZrSXNU3mQp3eS",
+                "info": {
+                    "expiry_month": "01",
+                    "cvc": 503,
+                    "address_line2": null,
+                    "address_line1": "12898 Ernser Shoal",
+                    "address_country": "Australia",
+                    "name": "Oran Borer",
+                    "address_state": "NSW",
+                    "clearingAccount": null,
+                    "address_postcode": 6846,
+                    "pan": "49164XXXXXXXX724",
+                    "expiry_year": 17,
+                    "address_city": "Arloberg"
+                }
+            }
+            ],
+                "bank_accounts": [
+                {
+                    "token": "tok_T6ICAtj9EA7JLcHm",
+                    "info": {
+                        "name": "Pearl Bahringer",
+                        "bsb": 318633,
+                        "clearingAccount": null,
+                        "number": 919109
+                    }
+                },
+                {
+                    "token": "tok_byh3sLy4kwxeCYOo",
+                    "info": {
+                        "name": "Hoyt Botsford",
+                        "number": 559392,
+                        "bsb": 701670,
+                        "clearingAccount": null
+                    }
+                }
+            ],
+                "email": "leann.bernier@hotmail.com",
+                "id": "cus_ZO1gllSfTvQMZdYu",
+                "merchant_id": "mer_JqVHiprqD1fxuIgL",
+                "updated_at": "2016-01-29 04:01:20",
+                "created_at": "2016-01-29 04:01:20",
+                "version": 1
+        }
+}
+```
+
+<Description>
+
+### HTTP Request
+
+`POST /customers/<customer id>/bankAccounts`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+customer id | The ID of the customer to add a bank account to
+
+## Delete a bank account
+
+```shell
+curl /customers/cus_ZO1gllSfTvQMZdYu/bankAccounts/tok_byh3sLy4kwxeCYOo \
+     -u sk_test_mFWVbfH4JpsA25mpbfZwhbhw: \
+     -X DELETE \
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+        "message": "Bank account deleted.",
+        "customer": {
+            "credit_cards": [
+            {
+                "token": "tok_fgt2qhBFos16rtVD",
+                "info": {
+                    "expiry_month": "10",
+                    "cvc": 929,
+                    "address_line2": null,
+                    "address_line1": "4017 Camden Mews",
+                    "address_country": "Australia",
+                    "name": "Bette Rau Jr.",
+                    "address_state": "NT",
+                    "clearingAccount": null,
+                    "address_postcode": 4117,
+                    "pan": "40240XXXXXXXX448",
+                    "expiry_year": 18,
+                    "address_city": "West Elvis"
+                }
+            },
+            {
+                "token": "tok_MpLZrSXNU3mQp3eS",
+                "info": {
+                    "expiry_month": "01",
+                    "cvc": 503,
+                    "address_line2": null,
+                    "address_line1": "12898 Ernser Shoal",
+                    "address_country": "Australia",
+                    "name": "Oran Borer",
+                    "address_state": "NSW",
+                    "clearingAccount": null,
+                    "address_postcode": 6846,
+                    "pan": "49164XXXXXXXX724",
+                    "expiry_year": 17,
+                    "address_city": "Arloberg"
+                }
+            }
+            ],
+                "bank_accounts": [
+                {
+                    "token": "tok_T6ICAtj9EA7JLcHm",
+                    "info": {
+                        "name": "Pearl Bahringer",
+                        "bsb": 318633,
+                        "clearingAccount": null,
+                        "number": 919109
+                    }
+                }
+            ],
+                "email": "leann.bernier@hotmail.com",
+                "id": "cus_ZO1gllSfTvQMZdYu",
+                "merchant_id": "mer_JqVHiprqD1fxuIgL",
+                "updated_at": "2016-01-29 04:01:20",
+                "created_at": "2016-01-29 04:01:20",
+                "version": 1
+        }
+}
+```
+
+Delete a bank account from a customer account.
+
+### HTTP Request
+
+`DELETE /customers/<customer id>/bankAccounts/<bank account token>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+customer id | The ID of the customer to remove a bank account from
+bank account token | The token of the bank account to remove
 
 # Payments 
 
 ## Create a Payment
 
-```shell
-curl /payments \
-    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
+                    ```shell
+                        curl /payments \
+                        -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X POST \
     -d "token=1726094106475018" \
     -d "reference=Vel qui aut tenetur corrupti vero cum itaque." \
