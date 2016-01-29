@@ -21,9 +21,9 @@ search: true
 
 # Introduction
 
-The EoneoPay API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website's client-side code). JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.
+The Eoneo Pay API is RESTful. API URL's intuitively reflect resource names and HTTP response codes indicate API errors. Standard HTTP verbs are used to add (POST), retrieve (GET), update (PUT) and delete (DELETE) resources.
 
-To make the API as explorable as possible, accounts have test mode and live mode API keys. There is no "switch" for changing between modes, just use the appropriate key to perform a live or test transaction. Requests made with test mode credentials never hit the banking networks and incur no cost.
+All API accounts have two sets of keys - one set for test mode and one for live mode. Use the test mode keys to make API requests without executing live banking transactions. Use public keys in client side web applications to request credit card and bank account tokens. Use secret keys for all other API requests. Secret keys should never be published in client side code.
 
 # Authentication
 
@@ -65,9 +65,9 @@ API Keys are revocable. An admin key is required to retrieve and revoke API Keys
 ## Get API Key details
 
 ```shell
-curl /apikeys/sk_test_Km2opmRbESoA32r36BlE24xm \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X GET
+curl /apikeys/sk_test_pTAETUWZjlsyue0o2pzwii8s \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X GET \
 
 ```
 
@@ -90,9 +90,17 @@ curl /apikeys/sk_test_Km2opmRbESoA32r36BlE24xm \
 
 ```json
 {
-    "api_key":"sk_test_Km2opmRbESoA32r36BlE24xm",
-    "permissions":"+",
-    "status":"1"
+    "api_key": "sk_test_pTAETUWZjlsyue0o2pzwii8s",
+    "api_permissions": [
+        "customers",
+        "payments",
+        "tokens",
+        "transfers",
+        "balance"
+    ],
+    "api_status": 1,
+    "merchant_id": "mer_w2FaDQdXKNn26Bil",
+    "id": "sk_test_pTAETUWZjlsyue0o2pzwii8s"
 }
 ```
 
