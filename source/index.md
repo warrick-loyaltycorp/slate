@@ -116,7 +116,7 @@ Retrieve all details for a specific API key.
 
 Parameter | Description
 --------- | -----------
-ID | The API key to  revoke
+APIKey | The API key to  revoke
 
 ## Revoke an API Key
 
@@ -162,7 +162,7 @@ Revoke an API Key. Once revoked an API key can no longer be used to make API cal
 
 Parameter | Description
 --------- | -----------
-ID | The API key to retrieve details for
+APIKey | The API key to retrieve details for
 
 # Tokens
 
@@ -297,22 +297,22 @@ curl /tokens \
      -d "bank_account[name]=Jimmy Grimes V" \
      -d "bank_account[number]=628279" \
      -d "bank_account[bsb]=343178"
- ```
+```
 
- ```PHP
- ```
+```PHP
+```
 
- ```Java
- ```
+```Java
+```
 
- ```Ruby
- ```
+```Ruby
+```
 
- ```Python
- ```
+```Python
+```
 
- ```Node
- ```
+```Node
+```
 
 > The above command returns JSON structured like this:
 
@@ -387,84 +387,110 @@ token ID | The ID of the token to retrieve
 
 # Merchants 
 
+## Create a merchant
+
 ```shell
 curl /merchants \
-     -u sk_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
      -X POST \
-     -d "title=Prof." \
-     -d "first_name=Ryleigh" \
-     -d "last_name=Hayes" \
-     -d "email=vance.champlin@hane.net" \
-     -d "business_name=Braun, Kulas and Heaney" \
-     -d "business_phone=249-839-5908" \
-     -d "business_website=http://lang.com" \
-     -d "abn=18307279381" \
-     -d "credit_card[name]=Madalyn Harris" \
-     -d "credit_card[number]=5144316381526579" \
-     -d "credit_card[expiry_month]=12" \
-     -d "credit_card[expiry_year]=18" \
-     -d "credit_card[cvc]=788" \
-     -d "credit_card[address_line1]=53289 Dickens Crest" \
+     -d "title=Mrs." \
+     -d "first_name=Ocie" \
+     -d "last_name=Leannon" \
+     -d "email=shanahan.krystal@yahoo.com" \
+     -d "business_name=Bergnaum Group" \
+     -d "business_phone=+1-515-604-6441" \
+     -d "business_website=http://daugherty.info" \
+     -d "abn=31228002077" \
+     -d "credit_card[name]=Prof. Javier Corwin" \
+     -d "credit_card[number]=5471422371087557" \
+     -d "credit_card[expiry_month]=07" \
+     -d "credit_card[expiry_year]=19" \
+     -d "credit_card[cvc]=759" \
+     -d "credit_card[address_line1]=1402 Weston Walk" \
      -d "credit_card[address_line2]=" \
-     -d "credit_card[address_city]=New Cletusberg" \
-     -d "credit_card[address_postcode]=3924" \
+     -d "credit_card[address_city]=Caroleview" \
+     -d "credit_card[address_postcode]=2289" \
      -d "credit_card[address_state]=NSW" \
      -d "credit_card[address_country]=Australia" \
-     -d "bank_account[name]=Prof. Margie Schuster DDS" \
-     -d "bank_account[number]=299481" \
-     -d "bank_account[bsb]=692501"
- ```
+     -d "bank_account[name]=Margarett Deckow" \
+     -d "bank_account[number]=181089" \
+     -d "bank_account[bsb]=179803" \
+     -d "statement_descriptor=Pay Bergnaum Group" \
+     -d "clearing_account=3"
+```
 
- ```PHP
- ```
+```PHP
+```
 
- ```Java
- ```
+```Java
+```
 
- ```Ruby
- ```
+```Ruby
+```
 
- ```Python
- ```
+```Python
+```
 
- ```Node
- ```
+```Node
+```
 
- > The above command returns JSON structured like this:
+> The above command returns JSON structured like this:
+
 ```json
 {
     "code": 0,
     "message": "Merchant created.",
     "merchant": {
-        "title": "Prof.",
-        "first_name": "Ryleigh",
-        "last_name": "Hayes",
-        "email": "vance.champlin@hane.net",
-        "business_name": "Braun, Kulas and Heaney",
-        "business_phone": "249-839-5908",
-        "business_website": "http:\/\/lang.com",
-        "abn": 18307279381,        
-        "bank_accounts": [            
+        "title": "Mrs.",        "first_name": "Ocie",
+        "last_name": "Leannon",
+        "email": "shanahan.krystal@yahoo.com",
+        "business_name": "Bergnaum Group",
+        "business_phone": "+1-515-604-6441",
+        "business_website": "http:\/\/daugherty.info",
+        "abn": 31228002077,
+        "statement_descriptor": "Pay Bergnaum Group",
+        "clearing_account": 3,
+        "bank_accounts": [
             {
-                "name": "Prof. Margie Schuster DDS",
-                "number": 299481,
-                "bsb": 692501
+                "token": "tok_K4fg1DUUmWfAPW4O",
+                "info": {
+                    "name": "Margarett Deckow",
+                    "number": 181089,
+                    "bsb": 179803,
+                    "clearingAccount": null
+                }
             }
         ],
         "credit_cards": [
             {
-                "token": "tok_s02GmYwLhGfgwBDI",
-                "creditCardInfo": {
-                    "pan": "514431XXXXXXX579",
-                    "expiryDate": "12\/18",
-                    "cardType": "5",
-                    "cardDescription": "Master Card"
+                "token": "tok_omckFPYrYmfyzePx",
+                "info": {
+                    "name": "Prof. Javier Corwin",
+                    "expiry_month": "07",
+                    "expiry_year": 19,
+                    "cvc": 759,
+                    "address_line1": "1402 Weston Walk",
+                    "address_line2": "",
+                    "address_city": "Caroleview",
+                    "address_postcode": 2289,
+                    "address_state": "NSW",
+                    "address_country": "Australia",
+                    "clearingAccount": null,
+                    "pan": "54714XXXXXXXX557"
                 }
             }
         ],
-        "id": "mer_3KDrwOWxVk9QQetd",
-        "secret_key": "sk_UbT2kNVBV5zd47jjKMpaq4eX",
-        "public_key": "pk_asVs4nMBxiLe5T9AO5y9Vh3Y"
+        "id": "mer_3YnwyFOLKI1YZnja",
+        "balance": {
+            "AUD": 0
+        },
+        "updated_at": "2016-01-29 05:01:19",
+        "created_at": "2016-01-29 05:01:19",
+        "version": 1,
+        "secret_live_key": "sk_live_Bw2pSoDOWfVNFRMGJ9Xp5jPv",
+        "secret_test_key": "sk_test_MjUMEIEkqVpemreYEyYJMRvT",
+        "public_live_key": "pk_live_tly20s7Mk3pk8utGofKYojAQ",
+        "public_test_key": "pk_test_AHOTNFqvEVJUYtSzk9LgbWpr"
     }
 }
 ```
@@ -476,6 +502,7 @@ This call returns the new merchant record, including:
 1. The API Keys for this merchant.
 2. The merchant unique ID. Use the unique ID to retrieve the merchant.
 3. A token and PAN for each credit card. The token and PAN replace the credit card number.
+4. A token for each bank account.
 
 <aside class="warning">An administrator API key is required to manage API keys</aside>
 
@@ -487,9 +514,9 @@ This call returns the new merchant record, including:
 
 ```shell
 curl /merchants/mer_xtmKq3i0MRMGDg2H \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X PUT \
-    -d "email=aGoodwin@hotmail.com"
+         -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+         -X PUT \
+         -d "email=aGoodwin@hotmail.com"
 ```
 
 ```PHP
@@ -776,8 +803,6 @@ At most twenty five merchants are returned per call. If more merchants are avail
 
 ## Create a Customer
 
-##<Route name>
-
 ```shell
 curl /customers \
      -u sk_jPnwDoXglGtnJ5KmBT8iAFeT: \
@@ -797,24 +822,24 @@ curl /customers \
      -d "bank_account[name]=Rhoda Waelchi" \
      -d "bank_account[number]=302083" \
      -d "bank_account[bsb]=105964"
- ```
+```
 
- ```PHP
- ```
+```PHP
+```
 
- ```Java
- ```
+```Java
+```
 
- ```Ruby
- ```
+```Ruby
+```
 
- ```Python
- ```
+```Python
+```
 
- ```Node
- ```
+```Node
+```
 
- > The above command returns JSON structured like this:
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -1136,22 +1161,22 @@ curl /merchants/mer_kXwC0TX1m7yh1lBE/cards \
      -d "credit_card[address_postcode]=6426" \
      -d "credit_card[address_state]=QLD" \
      -d "credit_card[address_country]=Australia"
- ```
+```
 
- ```PHP
- ```
+```PHP
+```
 
- ```Java
- ```
+```Java
+```
 
- ```Ruby
- ```
+```Ruby
+```
 
- ```Python
- ```
+```Python
+```
 
- ```Node
- ```
+```Node
+```
 
 > The above command returns JSON structured like this:
 
@@ -1484,9 +1509,9 @@ token | The token for the card to remove
 
 ## Add a bank account
 
-            ```shell
-                curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts \
-                -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+```shell
+curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
      -X POST \
      -d "bank_account[name]=Coleman Marks" \
      -d "bank_account[number]=347933" \
@@ -1923,9 +1948,9 @@ bank account token | The token of the bank account to remove
 
 ## Create a Payment
 
-                    ```shell
-                        curl /payments \
-                        -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
+```shell
+curl /payments \
+    -u sk_llg2kVYIEh2NTf5f2rG49pZH: \
     -X POST \
     -d "token=1726094106475018" \
     -d "reference=Vel qui aut tenetur corrupti vero cum itaque." \

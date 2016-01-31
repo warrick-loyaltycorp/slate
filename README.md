@@ -1,6 +1,11 @@
 Slate Based API Documentation for EoneoPay Payment Gateway
 ==========================================================
 
+Installation
+------------
+
+* See https://github.com/tripit/slate#getting-set-up for installation guide.
+
 Build Steps
 ------------
 
