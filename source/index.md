@@ -36,6 +36,8 @@ curl "api_endpoint_here" \
 ```
 
 ```PHP
+// use EoneoPay\EoneoPay;
+EoneoPay::setApiKey('your api key');
 ```
 
 ```Java
@@ -169,20 +171,20 @@ APIKey | The API key to retrieve details for
 ## Create a credit card token
 
 ```shell
-    curl /tokens \ 
-        -u pk_test_cTNdimnqAb625Kjl7JQFbj4c: \
-        -X POST \
-        -d "card[name]=Dr. Nichole Casper V" \
-        -d "card[number]=341694306848167" \
-        -d "card[expiry_month]=07" \
-        -d "card[expiry_year]=18" \
-        -d "card[cvc]=609" \
-        -d "card[address_line1]=934 Bechtelar Knolls" \
-        -d "card[address_line2]=" \
-        -d "card[address_city]=Willmsport" \
-        -d "card[address_postcode]=5357" \
-        -d "card[address_state]=ACT" \
-        -d "card[address_country]=Australia"
+curl /v1/tokens \
+     -u pk_test_QCi2W6ca73G03HxQ6vCUWrJF: \
+     -X POST \
+     -d "card[name]=Prof. Ryan Parisian" \
+     -d "card[number]=5213122451942050" \
+     -d "card[expiry_month]=12" \
+     -d "card[expiry_year]=18" \
+     -d "card[cvc]=273" \
+     -d "card[address_line1]=6034 Prosacco Fields" \
+     -d "card[address_line2]=" \
+     -d "card[address_city]=Port Grayceville" \
+     -d "card[address_postcode]=4750" \
+     -d "card[address_state]=WA" \
+     -d "card[address_country]=Australia"
 ```     
 
 ```PHP  
@@ -204,24 +206,15 @@ APIKey | The API key to retrieve details for
                                                                                                              
 ```json 
 {
-    "code": 0, 
+    "code": 0,
     "message": "Token created.",
     "token": {
-        "token": "tok_6KilthplNtDCnajd",
-        "info": {
-            "name": "Dr. Nichole Casper V",
-            "expiry_month": "07",
-            "expiry_year": 18,
-            "cvc": 609,
-            "address_line1": "934 Bechtelar Knolls",
-            "address_line2": "",
-            "address_city": "Willmsport",
-            "address_postcode": 5357,
-            "address_state": "ACT",
-            "address_country": "Australia",
-            "pan": "34169XXXXXXXX167"
-        }
-    }   
+        "id": "tok_hf5TL8AYsduR0j1s",
+        "source_id": "src_0z71AcAGAsLhn5Lh",
+        "updated_at": "2016-02-25 04:06:35",
+        "created_at": "2016-02-25 04:06:35",
+        "version": 1
+    }
 }
 ```     
                                                                                                                  
@@ -235,8 +228,8 @@ Create a credit card token.
 
 
 ```shell
-curl /tokens/tok_6KilthplNtDCnajd \
-     -u sk_test_YzvwgQwl1BO4xE3hV57S1QsE: \
+curl /v1/tokens/tok_xfuL5tyVrLe5k20F \
+     -u sk_test_Dg3UPZ5IammQbbglwKGQWGyo: \
      -X GET \
 ```
 
@@ -259,19 +252,31 @@ curl /tokens/tok_6KilthplNtDCnajd \
 
 ```json
 {
-    "token": "tok_6KilthplNtDCnajd",
-    "info": {
-        "expiry_month": "07",
-        "cvc": 609,
-        "address_line2": null,
-        "address_line1": "934 Bechtelar Knolls",
-        "address_country": "Australia",
-        "name": "Dr. Nichole Casper V",
-        "address_state": "ACT",
-        "address_postcode": 5357,
-        "pan": "34169XXXXXXXX167",
-        "expiry_year": 18,
-        "address_city": "Willmsport"
+    "created_at": "2016-02-25 05:10:56",
+    "source_id": "src_mxiQQmHEfXtll3oI",
+    "updated_at": "2016-02-25 05:10:56",
+    "version": 1,
+    "id": "tok_xfuL5tyVrLe5k20F",
+    "source": {
+        "updated_at": "2016-02-25 05:10:56",
+        "holder_id": "mer_zoIlXkzQnemFIfOS",
+        "created_at": "2016-02-25 05:10:56",
+        "id": "src_mxiQQmHEfXtll3oI",
+        "version": 1,
+        "token": "ny6VdPSBXbWV",
+        "info": {
+            "expiry_month": "08",
+            "cvc": 790,
+            "address_line2": null,
+            "address_line1": "2154 Hirthe Skyway",
+            "address_country": "Australia",
+            "name": "Roderick Ledner",
+            "address_state": "NT",
+            "address_postcode": 5610,
+            "pan": "51167XXXXXXXX161",
+            "expiry_year": 18,
+            "address_city": "Port Christaton"
+        }
     }
 }
 ```
@@ -291,12 +296,12 @@ token ID | The ID of the token to retrieve
 ## Create a bank account token
 
 ```shell
-curl /tokens \
-     -u pk_test_Lg6j5tD4CezAMc4nOcm3Hxmr: \
+curl /v1/tokens \
+     -u pk_test_sifZWBjtMU9R2XI9iBIylpf1: \
      -X POST \
-     -d "bank_account[name]=Jimmy Grimes V" \
-     -d "bank_account[number]=628279" \
-     -d "bank_account[bsb]=343178"
+     -d "bank_account[name]=Shane Renner" \
+     -d "bank_account[number]=762643" \
+     -d "bank_account[bsb]=196947"
 ```
 
 ```PHP
@@ -321,14 +326,13 @@ curl /tokens \
     "code": 0,
     "message": "Token created.",
     "token": {
-        "token": "tok_DPvhAj8CiZJGEmy4",
-            "info": {
-                "name": "Jimmy Grimes V",
-                "number": 628279,
-                "bsb": 343178
-            }
-        }
+        "id": "tok_iyXaixsK8H5XAYlS",
+        "source_id": "src_Z4vETKJuVpEPCeXN",
+        "updated_at": "2016-02-25 05:10:56",
+        "created_at": "2016-02-25 05:10:56",
+        "version": 1
     }
+}
 ```
 
 Create a token for a bank account.
@@ -340,8 +344,8 @@ Create a token for a bank account.
 ## Get a bank account token
 
 ```shell
-curl /tokens/tok_DPvhAj8CiZJGEmy4 \
-     -u sk_test_4kOEEQXZxNRS6VLtg63wLdRT: \
+curl /v1/tokens/tok_iyXaixsK8H5XAYlS \
+     -u sk_test_Dg3UPZ5IammQbbglwKGQWGyo: \
      -X GET \
 ```
 
@@ -364,11 +368,23 @@ curl /tokens/tok_DPvhAj8CiZJGEmy4 \
 
 ```json
 {
-    "token": "tok_DPvhAj8CiZJGEmy4",
-    "info": {
-        "name": "Jimmy Grimes V",
-        "bsb": 343178,
-        "number": 628279
+    "created_at": "2016-02-25 05:10:56",
+    "source_id": "src_Z4vETKJuVpEPCeXN",
+    "updated_at": "2016-02-25 05:10:56",
+    "version": 1,
+    "id": "tok_iyXaixsK8H5XAYlS",
+    "source": {
+        "updated_at": "2016-02-25 05:10:56",
+        "holder_id": "mer_zoIlXkzQnemFIfOS",
+        "created_at": "2016-02-25 05:10:56",
+        "id": "src_Z4vETKJuVpEPCeXN",
+        "version": 1,
+        "token": "nE63VUFUweX4",
+        "info": {
+            "name": "Shane Renner",
+            "bsb": 196947,
+            "number": 762643
+        }
     }
 }
 ```
@@ -390,32 +406,32 @@ token ID | The ID of the token to retrieve
 ## Create a merchant
 
 ```shell
-curl /merchants \
+curl /v1/merchants \
      -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
      -X POST \
-     -d "title=Mrs." \
-     -d "first_name=Ocie" \
-     -d "last_name=Leannon" \
-     -d "email=shanahan.krystal@yahoo.com" \
-     -d "business_name=Bergnaum Group" \
-     -d "business_phone=+1-515-604-6441" \
-     -d "business_website=http://daugherty.info" \
-     -d "abn=31228002077" \
-     -d "credit_card[name]=Prof. Javier Corwin" \
-     -d "credit_card[number]=5471422371087557" \
-     -d "credit_card[expiry_month]=07" \
+     -d "title=Dr." \
+     -d "first_name=Sadie" \
+     -d "last_name=Kris" \
+     -d "email=Marvin.Luisa@OReilly.com" \
+     -d "business_name=Lockman LLC" \
+     -d "business_phone=(767)699-1752x87291" \
+     -d "business_website=http://Bergnaum.biz" \
+     -d "abn=21332447230" \
+     -d "credit_card[name]=Dr. Alfonso Dare DVM" \
+     -d "credit_card[number]=5570047709172670" \
+     -d "credit_card[expiry_month]=10" \
      -d "credit_card[expiry_year]=19" \
-     -d "credit_card[cvc]=759" \
-     -d "credit_card[address_line1]=1402 Weston Walk" \
+     -d "credit_card[cvc]=902" \
+     -d "credit_card[address_line1]=945 Ebba Highway" \
      -d "credit_card[address_line2]=" \
-     -d "credit_card[address_city]=Caroleview" \
-     -d "credit_card[address_postcode]=2289" \
-     -d "credit_card[address_state]=NSW" \
+     -d "credit_card[address_city]=Borisbury" \
+     -d "credit_card[address_postcode]=6978" \
+     -d "credit_card[address_state]=QLD" \
      -d "credit_card[address_country]=Australia" \
-     -d "bank_account[name]=Margarett Deckow" \
-     -d "bank_account[number]=181089" \
-     -d "bank_account[bsb]=179803" \
-     -d "statement_descriptor=Pay Bergnaum Group" \
+     -d "bank_account[name]=Jalyn Schulist" \
+     -d "bank_account[number]=645304" \
+     -d "bank_account[bsb]=104456" \
+     -d "statement_descriptor=Pay Lockman LLC" \
      -d "clearing_account=3"
 ```
 
@@ -441,56 +457,51 @@ curl /merchants \
     "code": 0,
     "message": "Merchant created.",
     "merchant": {
-        "title": "Mrs.",        "first_name": "Ocie",
-        "last_name": "Leannon",
-        "email": "shanahan.krystal@yahoo.com",
-        "business_name": "Bergnaum Group",
-        "business_phone": "+1-515-604-6441",
-        "business_website": "http:\/\/daugherty.info",
-        "abn": 31228002077,
-        "statement_descriptor": "Pay Bergnaum Group",
+        "title": "Dr.",
+        "first_name": "Sadie",
+        "last_name": "Kris",
+        "email": "Marvin.Luisa@OReilly.com",
+        "business_name": "Lockman LLC",
+        "business_phone": "(767)699-1752x87291",
+        "business_website": "http:\/\/Bergnaum.biz",
+        "abn": 21332447230,
+        "statement_descriptor": "Pay Lockman LLC",
         "clearing_account": 3,
         "bank_accounts": [
             {
-                "token": "tok_K4fg1DUUmWfAPW4O",
-                "info": {
-                    "name": "Margarett Deckow",
-                    "number": 181089,
-                    "bsb": 179803,
-                    "clearingAccount": null
-                }
+                "name": "Jalyn Schulist",
+                "bsb": 104456,
+                "number": 645304,
+                "id": "src_CYIMRkLIJbebrpSA"
             }
         ],
         "credit_cards": [
             {
-                "token": "tok_omckFPYrYmfyzePx",
-                "info": {
-                    "name": "Prof. Javier Corwin",
-                    "expiry_month": "07",
-                    "expiry_year": 19,
-                    "cvc": 759,
-                    "address_line1": "1402 Weston Walk",
-                    "address_line2": "",
-                    "address_city": "Caroleview",
-                    "address_postcode": 2289,
-                    "address_state": "NSW",
-                    "address_country": "Australia",
-                    "clearingAccount": null,
-                    "pan": "54714XXXXXXXX557"
-                }
+                "expiry_month": "10",
+                "cvc": 902,
+                "address_line2": null,
+                "address_line1": "945 Ebba Highway",
+                "address_country": "Australia",
+                "name": "Dr. Alfonso Dare DVM",
+                "address_state": "QLD",
+                "address_postcode": 6978,
+                "pan": "55700XXXXXXXX670",
+                "expiry_year": 19,
+                "address_city": "Borisbury",
+                "id": "src_Zg1Cb8DuIiUiMGSS"
             }
         ],
-        "id": "mer_3YnwyFOLKI1YZnja",
+        "id": "mer_WTidK388g9zLqHdb",
         "balance": {
             "AUD": 0
         },
-        "updated_at": "2016-01-29 05:01:19",
-        "created_at": "2016-01-29 05:01:19",
+        "updated_at": "2016-02-25 05:16:17",
+        "created_at": "2016-02-25 05:16:17",
         "version": 1,
-        "secret_live_key": "sk_live_Bw2pSoDOWfVNFRMGJ9Xp5jPv",
-        "secret_test_key": "sk_test_MjUMEIEkqVpemreYEyYJMRvT",
-        "public_live_key": "pk_live_tly20s7Mk3pk8utGofKYojAQ",
-        "public_test_key": "pk_test_AHOTNFqvEVJUYtSzk9LgbWpr"
+        "secret_live_key": "sk_live_SAbtx7HL8AjvxMvI6pe41fQZ",
+        "secret_test_key": "sk_test_VYKGdkUD7rLHvnPERHLeqwPr",
+        "public_live_key": "pk_live_AGkU9tmiDlAQfUv9qOB3uk2d",
+        "public_test_key": "pk_test_XQUIpmXHcUuMvun0daF5jdvv"
     }
 }
 ```
@@ -513,10 +524,10 @@ This call returns the new merchant record, including:
 ## Update a Merchant
 
 ```shell
-curl /merchants/mer_xtmKq3i0MRMGDg2H \
-         -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-         -X PUT \
-         -d "email=aGoodwin@hotmail.com"
+curl /v1/merchants/mer_WTidK388g9zLqHdb \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X PUT \
+     -d "email=rVon@Rosenbaum.biz"
 ```
 
 ```PHP
@@ -538,36 +549,32 @@ curl /merchants/mer_xtmKq3i0MRMGDg2H \
 
 ```json
 {
-    "code":0,
-    "message":"Merchant updated.",
-    "merchant":
-    {
-        "title":"Mr.",
-        "first_name":"Jordy",
-        "last_name":"Miller",
-        "email":"aGoodwin@hotmail.com",
-        "business_name":"Kirlin LLC",
-        "business_phone":"193.548.2607x9102",
-        "business_website":"http:\/\/Yundt.biz",
-        "abn":54684559752,
-        "bank_accounts":[
-        {
-            "name":"Abdullah Gutkowski",
-            "bsb":454173,
-            "number":197814
-        }],
-        "credit_cards":[
-        {
-            "token":"2745595004221945",
-            "creditCardInfo":
-            {
-                "pan":"402400XXXXXXX658",
-                "expiryDate":"09\/20",
-                "cardType":"6",
-                "cardDescription":"Visa"
-            }
-        }],
-        "id":"mer_xtmKq3i0MRMGDg2H"
+    "code": 0,
+    "message": "Merchant updated.",
+    "merchant": {
+        "clearing_account": 3,
+        "business_name": "Lockman LLC",
+        "last_name": "Kris",
+        "title": "Dr.",
+        "abn": 21332447230,
+        "version": 2,
+        "business_website": "http:\/\/Bergnaum.biz",
+        "statement_descriptor": "Pay Lockman LLC",
+        "business_phone": "(767)699-1752x87291",
+        "balance": {
+            "AUD": 0
+        },
+        "credit_cards": [
+            "src_Zg1Cb8DuIiUiMGSS"
+        ],
+        "bank_accounts": [
+            "src_CYIMRkLIJbebrpSA"
+        ],
+        "first_name": "Sadie",
+        "email": "rVon@Rosenbaum.biz",
+        "id": "mer_WTidK388g9zLqHdb",
+        "updated_at": "2016-02-25 05:16:17",
+        "created_at": "2016-02-25 05:16:17"
     }
 }
 ```
@@ -589,9 +596,9 @@ merchant ID | The ID of the merchant to update
 ## Delete a Merchant
 
 ```shell
-curl /merchants/mer_2zeySm9fP4WKssSX \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X DELETE 
+curl /v1/merchants/mer_WTidK388g9zLqHdb \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X DELETE \
 ```
 
 ```PHP
@@ -613,8 +620,8 @@ curl /merchants/mer_2zeySm9fP4WKssSX \
 
 ```json
 {
-    "code":0,
-    "message":"Merchant deleted"
+    "code": 0,
+    "message": "Merchant deleted."
 }
 ```
 
@@ -635,9 +642,9 @@ merchant ID | The ID of the merchant to delete
 ## Get a Merchant
 
 ```shell
-curl /merchants/mer_2zeySm9fP4WKssSX \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X GET 
+curl /v1/merchants/mer_WTidK388g9zLqHdb \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X GET \
 ```
 
 ```PHP
@@ -659,31 +666,45 @@ curl /merchants/mer_2zeySm9fP4WKssSX \
 
 ```json
 {
-    "name":"Maida Schaefer",
-    "email":"Geovany.Barrows@Hirthe.com",
-    "address":"33543 Connelly Prairie\nDouglasbury, MA 58663",
-    "credit_cards":
-    [
+    "clearing_account": 3,
+    "business_name": "Lockman LLC",
+    "last_name": "Kris",
+    "title": "Dr.",
+    "abn": 21332447230,
+    "version": 1,
+    "business_website": "http:\/\/Bergnaum.biz",
+    "statement_descriptor": "Pay Lockman LLC",
+    "business_phone": "(767)699-1752x87291",
+    "balance": {
+        "AUD": 0
+    },
+    "credit_cards": [
         {
-            "token":"3802789002339201",
-            "creditCardInfo":
-            {
-                "pan":"547025XXXXXXX413",
-                "expiryDate":"08\/20",
-                "cardType":"5",
-                "cardDescription":"Master Card"
-            }
+            "expiry_month": "10",
+            "cvc": 902,
+            "address_line2": null,
+            "address_line1": "945 Ebba Highway",
+            "address_country": "Australia",
+            "name": "Dr. Alfonso Dare DVM",
+            "address_state": "QLD",
+            "address_postcode": 6978,
+            "pan": "55700XXXXXXXX670",
+            "expiry_year": 19,
+            "address_city": "Borisbury",
+            "id": "src_Zg1Cb8DuIiUiMGSS"
         }
     ],
-    "bank_accounts":
-    [
+    "bank_accounts": [
         {
-            "name":"Prof. Franco Wunsch II",
-            "number":457888,
-            "branch":465377
+            "name": "Jalyn Schulist",
+            "bsb": 104456,
+            "number": 645304,
+            "id": "src_CYIMRkLIJbebrpSA"
         }
     ],
-    "id":"mer_2zeySm9fP4WKssSX"
+    "first_name": "Sadie",
+    "email": "Marvin.Luisa@OReilly.com",
+    "id": "mer_WTidK388g9zLqHdb"
 }
 ```
 
@@ -804,27 +825,55 @@ At most twenty five merchants are returned per call. If more merchants are avail
 ## Create a Customer
 
 ```shell
-curl /customers \
-     -u sk_jPnwDoXglGtnJ5KmBT8iAFeT: \
+curl /v1/customers \
+     -u sk_test_PMWDWMDvK5EvMwf2eOYb445w: \
      -X POST \
-     -d "email=kristina.krajcik@gmail.com" \
-     -d "credit_card[name]=Lamont Farrell" \
-     -d "credit_card[number]=5522860686208732" \
-     -d "credit_card[expiry_month]=02" \
-     -d "credit_card[expiry_year]=17" \
-     -d "credit_card[cvc]=818" \
-     -d "credit_card[address_line1]=5735 Adelia Orchard" \     
+     -d "email=zKozey@gmail.com" \
+     -d "credit_card[name]=Mina Metz IV" \
+     -d "credit_card[number]=4485461330960" \
+     -d "credit_card[expiry_month]=03" \
+     -d "credit_card[expiry_year]=21" \
+     -d "credit_card[cvc]=510" \
+     -d "credit_card[address_line1]=02486 Darien Meadows" \
      -d "credit_card[address_line2]=" \
-     -d "credit_card[address_city]=East Chanelle" \
-     -d "credit_card[address_postcode]=6309" \
-     -d "credit_card[address_state]=NT" \
+     -d "credit_card[address_city]=Kovacekmouth" \
+     -d "credit_card[address_postcode]=4256" \
+     -d "credit_card[address_state]=SA" \
      -d "credit_card[address_country]=Australia" \
-     -d "bank_account[name]=Rhoda Waelchi" \
-     -d "bank_account[number]=302083" \
-     -d "bank_account[bsb]=105964"
+     -d "bank_account[name]=Miss Aryanna Bins" \
+     -d "bank_account[number]=992118" \
+     -d "bank_account[bsb]=372757"
 ```
 
 ```PHP
+//use EoneoPay\Customer;
+
+$customer = new Customer;
+$customer->email = 'zKozey@gmail.com';
+$customer = $customer->save();
+
+$creditCard = new CreditCard;
+$creditCard->number = '4485461330960';
+$creditCard->expiry_month = 3;
+$creditCard->expiry_year = 21;
+$creditCard->name = 'Mina Metz IV';
+$creditCard->cvc = '510';
+$creditCard->address_line1='02486 Darien Meadows';
+$creditCard->address_line2='';
+$creditCard->address_city='Kovacekmout';
+$creditCard->address_postcode='4256';
+$creditCard->address_state='SA';
+$creditCard->address_country='Australia';
+
+$customer->addCreditCard($creditCard);
+
+$bankAccount = new BankAccount;
+$bankAccount->number = '992118';
+$bankAccount->bsb = '372757';
+$bankAccount->name = 'Miss Aryanna Bins';
+
+$customer->addBankAccount($bankAccount);
+
 ```
 
 ```Java
@@ -846,27 +895,36 @@ curl /customers \
     "code": 0,
     "message": "Customer created.",
     "customer": {
-        "email": "kristina.krajcik@gmail.com",
+        "email": "zKozey@gmail.com",
         "bank_accounts": [
             {
-                "name": "Rhoda Waelchi",
-                "number": 302083,
-                "bsb": 105964
+                "name": "Miss Aryanna Bins",
+                "bsb": 372757,
+                "number": 992118,
+                "id": "src_x3HFGRfC6MRcJGuf"
             }
         ],
         "credit_cards": [
             {
-                "token": "tok_gUrrYIWKq2xtZlQD",
-                "creditCardInfo": {
-                    "pan": "552286XXXXXXX732",
-                    "expiryDate": "02\/17",
-                    "cardType": "5",
-                    "cardDescription": "Master Card"
-                }
+                "expiry_month": "03",
+                "cvc": 510,
+                "address_line2": null,
+                "address_line1": "02486 Darien Meadows",
+                "address_country": "Australia",
+                "name": "Mina Metz IV",
+                "address_state": "SA",
+                "address_postcode": 4256,
+                "pan": "44854XXXXXXXX960",
+                "expiry_year": 21,
+                "address_city": "Kovacekmouth",
+                "id": "src_nLMTTZIbdFkhrVWj"
             }
         ],
-        "id": "cus_MuSMXuHnWRL7qN3b",
-        "merchant_id": "sk_jPnwDoXglGtnJ5KmBT8iAFeT"
+        "id": "cus_ci54AkvX11i83W98",
+        "merchant_id": "mer_uLo1CZqxeE5OWwne",
+        "updated_at": "2016-02-18 04:58:07",
+        "created_at": "2016-02-18 04:58:07",
+        "version": 1
     }
 }
 ```
@@ -892,6 +950,10 @@ curl /customers/cus_e44VrNXhj9MFNNfO \
 ```
 
 ```PHP
+//use EoneoPay\Customer;
+
+$customer->email = 'Blanda.Sofia@hotmail.com';
+$customer = $customer->save();
 ```
 
 ```Java
@@ -958,6 +1020,9 @@ curl /customers/cus_P3thMWG1tRvdfING \
 ```
 
 ```PHP
+//use EoneoPay\Customer;
+
+$customer->delete();
 ```
 
 ```Java
@@ -1002,6 +1067,9 @@ curl /customers/cus_P3thMWG1tRvdfING \
 ```
 
 ```PHP
+//use EoneoPay\Customer;
+
+$customer = Customer::retrieve('cus_P3thMWG1tRvdfING');
 ```
 
 ```Java
@@ -2190,13 +2258,13 @@ transfer ID | The ID of the transfer to retrieve
 ## Set general fees
 
 ```shell
-curl /fees/cc_payment \
-    -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
-    -X PUT 
-    -d "transactionFee=0.3" \
-    -d "[cardRates][MasterCard]=1.5" \
-    -d "[cardRates][Visa]=1.5" \
-    -d "[cardRates][AMEX]=2.9"
+curl /v1/fees/cc_payment \
+     -u sk_test_QyeTXFXrvKd0I7sGObQGY6mi: \
+     -X PUT \
+     -d "transaction_fee=0.3" \
+     -d "card_rates[MasterCard]=1.5" \
+     -d "card_rates[Visa]=1.5" \
+     -d "card_rates[AMEX]=2.9"
 ```
 
 ```PHP
@@ -2453,3 +2521,407 @@ bpay             | A BPAY payment
 bpay_correction  | A BPAY correction
 bpay_reversal    | A BPAY reversal
 
+# Plans
+
+## Create a plan
+
+```shell
+curl /v1/plans \
+     -u sk_test_FV0hGqjo0EcR5oDJg9v94ALM: \
+     -X POST \
+     -d "name=Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel." \
+     -d "amount=40687" \
+     -d "interval=year" \
+     -d "intervalCount=3" \
+     -d "currency=AUD" \
+     -d "fees[0][description]=Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa. At autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui." \
+     -d "fees[0][amount]=2848" \
+     -d "fees[0][trigger]=periodical" \
+     -d "fees[0][proration]=all"
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Plan created.",
+    "plan": {
+        "name": "Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel.",
+        "currency": "AUD",
+        "amount": 40687,
+        "interval": "year",
+        "fees": [
+            {
+                "description": "Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa.\nAt autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui.",
+                "amount": 2848,
+                "trigger": "periodical",
+                "proration": "all"
+            }
+        ],
+        "interval_count": 1,
+        "id": "plan_AcFxxK9m5azQDXr0",
+        "merchant_id": "mer_kaspq1kl1LuQhboO",
+        "updated_at": "2016-02-29 04:36:34",
+        "created_at": "2016-02-29 04:36:34",
+        "version": 1
+    }
+}
+```
+
+Create a new subscription plan. Customers must be subscribed to a plan in order to process payments against a plan.
+
+### HTTP Request
+
+`POST /v1/plans`
+
+## Get a Plan
+
+```shell
+curl /v1/plans/plan_AcFxxK9m5azQDXr0 \
+     -u sk_test_FV0hGqjo0EcR5oDJg9v94ALM: \
+     -X GET \
+
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "interval_count": 1,
+    "amount": 40687,
+    "fees": [
+        {
+            "description": "Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa.\nAt autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui.",
+            "amount": 2848,
+            "trigger": "periodical",
+            "proration": "all"
+        }
+    ],
+    "name": "Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel.",
+    "currency": "AUD",
+    "interval": "year",
+    "id": "plan_AcFxxK9m5azQDXr0",
+    "merchant_id": "mer_kaspq1kl1LuQhboO"
+}
+```
+
+<Description>
+
+### HTTP Request
+
+`GET /v1/plans/<plan ID>`
+
+## Update a plan
+
+```shell
+curl /v1/plans/plan_AcFxxK9m5azQDXr0 \
+     -u sk_test_FV0hGqjo0EcR5oDJg9v94ALM: \
+     -X PUT \
+     -d "name=Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel." \
+     -d "currency=AUD" \
+     -d "amount=81374" \
+     -d "interval=year" \
+     -d "fees[0][description]=Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa.  At autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui." \
+     -d "fees[0][amount]=2848" \
+     -d "fees[0][trigger]=periodical" \
+     -d "fees[0][proration]=all" \
+     -d "interval_count=1" \
+     -d "id=plan_AcFxxK9m5azQDXr0" \
+     -d "merchant_id=mer_kaspq1kl1LuQhboO" \
+     -d "updated_at=2016-02-29 04:36:34" \
+     -d "created_at=2016-02-29 04:36:34" \
+     -d "version=1"
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Plan updated.",
+    "plan": {
+        "interval_count": 1,
+        "amount": 81374,
+        "fees": [
+            {
+                "description": "Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa.\nAt autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui.",
+                "amount": 2848,
+                "trigger": "periodical",
+                "proration": "all"
+            }
+        ],
+        "name": "Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel.",
+        "currency": "AUD",
+        "interval": "year",
+        "id": "plan_AcFxxK9m5azQDXr0",
+        "merchant_id": "mer_kaspq1kl1LuQhboO",
+        "version": 2,
+        "created_at": "2016-02-29 04:36:34",
+        "updated_at": "2016-02-29 04:36:34"
+    }
+}
+```
+
+Update a plan with new details.
+
+### HTTP Request
+
+`PUT /v1/plans/<plan ID>`
+
+## Delete a plan
+
+```shell
+curl /v1/plans/plan_R6bTUkP0BrPQtkLf \
+     -u sk_live_Zb0kaUsCLwL51YQ60fxd3Lz3: \
+     -X DELETE \
+
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Plan deleted."
+}
+```
+
+Delete a plan. All subscriptions will be deleted.
+
+### HTTP Request
+
+`DELETE /v1/plans/<plan ID>`
+
+# Subscriptions
+
+## Create a subscription
+
+```shell
+curl /v1/customers/cus_w9fPGpw8tJaFtVK8/subscriptions \
+     -u sk_test_FV0hGqjo0EcR5oDJg9v94ALM: \
+     -X POST \
+     -d "plan=plan_AcFxxK9m5azQDXr0" \
+     -d "source=src_tY4D1y87aWH1wQHN" \
+     -d "start_date=2016-03-01" \
+     -d "end_date=2017-03-31"
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "Subscription created.",
+    "subscription": {
+        "id": "sub_bZ3NhZJ0i5Fiihpf",
+        "customer_id": "cus_w9fPGpw8tJaFtVK8",
+        "plan_id": "plan_AcFxxK9m5azQDXr0",
+        "status": "active",
+        "source": "src_tY4D1y87aWH1wQHN",
+        "start_date": "2016-03-01",
+        "end_date": "2017-03-31",
+        "updated_at": "2016-02-29 04:36:34",
+        "created_at": "2016-02-29 04:36:34",
+        "version": 1,
+        "plan": {
+            "interval_count": 1,
+            "amount": 81374,
+            "fees": [
+                {
+                    "description": "Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa.\nAt autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui.",
+                    "amount": 2848,
+                    "trigger": "periodical",
+                    "proration": "all"
+                }
+            ],
+            "name": "Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel.",
+            "currency": "AUD",
+            "interval": "year",
+            "id": "plan_AcFxxK9m5azQDXr0",
+            "merchant_id": "mer_kaspq1kl1LuQhboO"
+        }
+    }
+}
+```
+
+Create a new subscription. The customer is subscribed to the specified plan. Any payments made with the subscription ID as a payment reference will be allocated to this subscription.
+
+### HTTP Request
+
+`POST /v1/customers/<customer ID>/subscriptions`
+
+## Get a subscription
+
+```shell
+curl /v1/customers/cus_w9fPGpw8tJaFtVK8/subscriptions/sub_bZ3NhZJ0i5Fiihpf \
+     -u sk_test_FV0hGqjo0EcR5oDJg9v94ALM: \
+     -X GET \
+
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "end_date": "2017-03-31",
+    "source": "src_tY4D1y87aWH1wQHN",
+    "customer_id": "cus_w9fPGpw8tJaFtVK8",
+    "plan_id": "plan_AcFxxK9m5azQDXr0",
+    "status": "active",
+    "start_date": "2016-03-01",
+    "id": "sub_bZ3NhZJ0i5Fiihpf",
+    "plan": {
+        "interval_count": 1,
+        "amount": 81374,
+        "fees": [
+            {
+                "description": "Sit quibusdam corrupti omnis sit sint. Ut eum quis sint nisi quasi ipsa.\nAt autem accusamus consequatur. Doloremque numquam non nemo aliquid iste. Et et laudantium id qui.",
+                "amount": 2848,
+                "trigger": "periodical",
+                "proration": "all"
+            }
+        ],
+        "name": "Quae facilis enim quis impedit ea blanditiis. Et est doloribus laborum. Qui rerum modi soluta illo. Eos dolor delectus velit eius ut pariatur vel.",
+        "currency": "AUD",
+        "interval": "year",
+        "id": "plan_AcFxxK9m5azQDXr0",
+        "merchant_id": "mer_kaspq1kl1LuQhboO"
+    }
+}
+```
+
+Get subscription details.
+
+### HTTP Request
+
+`GET /v1/customers/<customer ID>/subscriptions/<subscription ID>
+
+## Cancel a subscription
+
+```shell
+curl /v1/customers/cus_w9fPGpw8tJaFtVK8/subscriptions/sub_bZ3NhZJ0i5Fiihpf \
+     -u sk_test_FV0hGqjo0EcR5oDJg9v94ALM: \
+     -X DELETE \
+
+```
+
+```PHP
+```
+
+```Java
+```
+
+```Ruby
+```
+
+```Python
+```
+
+```Node
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 0,
+    "message": "api_messages.subscription_cancelled"
+}
+```
+
+Cancel the specified subscription.
+
+### HTTP Request
+
+`DELETE /v1/customers/<customer ID>/subscriptions/<subscription ID>`
