@@ -436,6 +436,16 @@ curl /v1/merchants \
 ```
 
 ```PHP
+$merchant = new Merchant;
+$merchant->email = 'merchant1@example.com';
+$merchant->title = 'Mr';
+$merchant->first_name = 'Test';
+$merchant->last_name = 'Merchant';
+$merchant->business_name = 'Test Merchant Pty Ltd';
+$merchant->business_website = 'http://merchant.example.com';
+$merchant->business_phone = '0123456789';
+$merchant->abn = '0123456789';
+$merchant = $merchant->save();
 ```
 
 ```Java
@@ -531,6 +541,9 @@ curl /v1/merchants/mer_WTidK388g9zLqHdb \
 ```
 
 ```PHP
+$merchant = Merchant::retrieve('mer_WTidK388g9zLqHdb');
+$merchant->email = 'rVon@Rosenbaum.biz';
+$merchant->save();
 ```
 
 ```Java
@@ -602,6 +615,8 @@ curl /v1/merchants/mer_WTidK388g9zLqHdb \
 ```
 
 ```PHP
+$merchant = Merchant::retrieve('mer_WTidK388g9zLqHdb');
+$merchant->delete();
 ```
 
 ```Java
@@ -651,6 +666,7 @@ curl /v1/merchants/mer_WTidK388g9zLqHdb \
 ```
 
 ```Java
+$merchant = Merchant::retrieve('mer_WTidK388g9zLqHdb');
 ```
 
 ```Ruby
@@ -732,6 +748,7 @@ curl /merchants \
 ```
 
 ```PHP
+Merchant::all(["page_key" => "mer_OjHXobBsSHsGTXvU"]);
 ```
 
 ```Java
@@ -1138,6 +1155,7 @@ curl /customers \
 ```
 
 ```PHP
+Customer::all(['page_key' => 'cus_PtMsPVGfgMa0QrXv']);
 ```
 
 ```Java
@@ -1232,6 +1250,17 @@ curl /merchants/mer_kXwC0TX1m7yh1lBE/cards \
 ```
 
 ```PHP
+$merchant = Merchant::retrieve('mer_kXwC0TX1m7yh1lBE');
+
+$creditCard = new MerchantCreditCard;
+$creditCard->number = '5188908314542199';
+$creditCard->expiry_month = 10;
+$creditCard->expiry_year = 17;
+$creditCard->name = 'Ms. Eloisa Satterfield Sr.';
+$creditCard->cvc = '680';
+
+//Add the credit card to the merchant
+$merchant->addCreditCard($creditCard);
 ```
 
 ```Java
@@ -1317,6 +1346,8 @@ curl /merchants/mer_kXwC0TX1m7yh1lBE/cards/tok_H7bb4RBV3mbmb560 \
 ```
 
 ```Java
+$creditCard = MerchantCreditCard::retrieve("tok_H7bb4RBV3mbmb560");
+$creditCard->delete();
 ```
 
 ```Ruby
@@ -1401,6 +1432,18 @@ curl /customers/cus_ZO1gllSfTvQMZdYu/cards \
 ```
 
 ```PHP
+$customer = Customer::retrieve("cus_ZO1gllSfTvQMZdYu");
+
+//Create a new credit card
+$creditCard = new CreditCard;
+$creditCard->number = '4916454547269724';
+$creditCard->expiry_month = 1;
+$creditCard->expiry_year = 17;
+$creditCard->name = 'Oran Borer';
+$creditCard->cvc = '503';
+
+//Add the credit card to the customer
+$customer->addCreditCard($creditCard);
 ```
 
 ```Java
@@ -1500,6 +1543,8 @@ curl /customers/cus_tTsMhz5RYPDog9Ua/cards/tok_PisfMAt8ILjcrGuN \
 ```
 
 ```PHP
+$creditCard = CreditCard::retrieve("tok_PisfMAt8ILjcrGuN");
+$creditCard->delete();
 ```
 
 ```Java
@@ -1587,6 +1632,15 @@ curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts \
 ```
 
 ```PHP
+$merchant = Merchant::retrieve("mer_vttc1znlfHvbRKww");
+
+$bankAccount = new MerchantBankAccount;
+$bankAccount->number = '347933';
+$bankAccount->bsb = '587061';
+$bankAccount->name = 'Coleman Marks';
+
+//Add the bank account to the merchant
+$merchant->addBankAccount($bankAccount);
 ```
 
 ```Java
@@ -1701,6 +1755,8 @@ curl /merchants/mer_vttc1znlfHvbRKww/bankAccounts/tok_YuWCnw5qokoT2QMR \
 ```
 
 ```PHP
+$bankAccount = MerchantBankAccount::retrieve("tok_YuWCnw5qokoT2QMR");
+$bankAccount->delete();
 ```
 
 ```Java
@@ -1813,6 +1869,15 @@ curl /customers/cus_ZO1gllSfTvQMZdYu/bankAccounts \
 ```
 
 ```PHP
+$customer = Customer::retrieve("cus_ZO1gllSfTvQMZdYu");
+
+$bankAccount = new BankAccount();
+$bankAccount->number = '559392';
+$bankAccount->bsb = '701670';
+$bankAccount->name = 'Hoyt Botsford';
+
+//Add the bank account to the customer, calls the API to store the bank account and obtain a token
+$customer->addBankAccount($bankAccount);
 ```
 
 ```Java
@@ -1921,6 +1986,8 @@ curl /customers/cus_ZO1gllSfTvQMZdYu/bankAccounts/tok_byh3sLy4kwxeCYOo \
 ```
 
 ```PHP
+$bankAccount = BankAccount::retrieve("tok_byh3sLy4kwxeCYOo ");
+$bankAccount->delete();
 ```
 
 ```Java
@@ -2027,6 +2094,12 @@ curl /payments \
 ```
 
 ```PHP
+$payment = new Payment;
+$payment->amount = 65700;
+$payment->currency = 'AUD';
+$payment->token = '1726094106475018'; 
+$payment->reference = 'Vel qui aut tenetur corrupti vero cum itaque.';
+$processedPayment = $payment->submit();
 ```
 
 ```Java
@@ -2078,6 +2151,8 @@ curl /payments/282163 \
 ```
 
 ```PHP
+$payment = Payment::retrieve("282163 ");
+$refunded = $payment->refund();
 ```
 
 ```Java
@@ -2124,6 +2199,10 @@ Parameter | Description
 txnID | The ID of the payment transaction to refund
 
 # Transfers
+
+Merchants transfers fees from their EoneoPay account to a nominated bank account using the Transfer APIs.
+
+The maximum transfer amount is the current balance of the Merchant EoneoPay account with the specified currency.
 
 ## Create a transfer
 
@@ -2424,6 +2503,8 @@ curl /balance \
 ```
 
 ```PHP
+$balance = Balance::retrieve();
+echo $balance->AUD; //32672
 ```
 
 ```Java
@@ -2461,6 +2542,14 @@ curl /balance/history \
 ```
 
 ```PHP
+$history = Balance::history();
+foreach ($history->payments as $payment) {
+    var_dump($payment);
+}
+
+foreach ($history->transfers as $transfer) {
+    var_dump($transfer);
+}
 ```
 
 ```Java
@@ -2479,14 +2568,40 @@ curl /balance/history \
 
 ```json
 {
-    "list": [
+    "payments": [
         {
-            "created_at": "2016-01-22 01:01:07",
-            "merchant_id": "mer_ZEv95JWyBXC3yQpL",
+            "created_at": "2016-03-01 02:07:27",
+            "txn_id": "txn_TfqQ03xrN6sRKHIa",
+            "updated_at": "2016-03-01 02:07:27",
+            "amount": "100",
             "type": "cc_payment",
-            "version": 1,
-            "txn_id": "txn_2EDan22JAwm4vkRH",
-            "updated_at": "2016-01-22 01:01:07",
+            "card_type": "MasterCard",
+            "token": "src_TrxK7bmNbSIhhlIR",
+            "reference": "Test payment.",
+            "statement_descriptor": null,
+            "txn_date": "2016-03-01 02:07:27",
+            "fee_amount": 31.5,
+            "fee_schedule": {
+                "transaction_fee": 0.3,
+                "card_rates": {
+                    "MasterCard": 1.5,
+                    "AMEX": 2.9,
+                    "Visa": 1.5
+                },
+                "payment_type": "cc_payment"
+            },
+            "currency": "AUD"
+        }
+    ],
+    "transfers": [
+        {
+            "id": "tfr_82mAOHUNbJJY9FUC",
+            "merchant_id": "mer_JvXUKMUY3e30ptSL",
+            "amount": "68.5",
+            "destination": "src_pD7tKjMlY28Ho3BT",
+            "description": "Test transfer",
+            "currency": "AUD",
+            "status": 0
         }
     ]
 }
